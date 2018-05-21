@@ -64,7 +64,9 @@ namespace Battleship.GameController.Tests.GameControllerTests
         [Test]
         public void ThrowExceptionIfPositstionIsNull()
         {
-            
+            Assert.That(() =>
+                    GameController.CheckIsHit(new []{new Ship()}, null),
+                Throws.ArgumentNullException);
         }
 
         /// <summary>
@@ -73,7 +75,8 @@ namespace Battleship.GameController.Tests.GameControllerTests
         [Test]
         public void ThrowExceptionIfShipIsNull()
         {
-            Assert.That(() => GameController.CheckIsHit(null, new Position(Letters.H, 1)),
+            Assert.That(() => 
+                GameController.CheckIsHit(null, new Position(Letters.H, 1)),
                 Throws.ArgumentNullException);
         }
     }

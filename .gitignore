@@ -288,3 +288,5 @@ __pycache__/
 *.xsd.cs
 /build
 /src/Battleship.GameController.Tests/bower_components
+/src/NDependOut
+/src/Battleship.ndproj
