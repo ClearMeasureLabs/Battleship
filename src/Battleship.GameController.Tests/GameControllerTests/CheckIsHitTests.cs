@@ -1,21 +1,19 @@
-﻿namespace Battleship.GameController.Tests.GameControllerTests
+﻿using System;
+using Battleship.GameController.Contracts;
+using NUnit.Framework;
+
+namespace Battleship.GameController.Tests.GameControllerTests
 {
-    using System;
-
-    using Battleship.GameController.Contracts;
-
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     /// <summary>
     /// The game controller tests.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class GameControllerTests
     {
         /// <summary>
         /// The should hit the ship.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ShouldHitTheShip()
         {
             var ships = GameController.InitializeShips();
@@ -39,7 +37,7 @@
         /// <summary>
         /// The should not hit the ship.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ShouldNotHitTheShip()
         {
             var ships = GameController.InitializeShips();
@@ -63,21 +61,20 @@
         /// <summary>
         /// The throw exception if positstion is null.
         /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
         public void ThrowExceptionIfPositstionIsNull()
         {
-            GameController.CheckIsHit(GameController.InitializeShips(), null);
+            
         }
 
         /// <summary>
         /// The throw exception if ship is null.
         /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
         public void ThrowExceptionIfShipIsNull()
         {
-            GameController.CheckIsHit(null, new Position(Letters.H, 1));
+            Assert.That(() => GameController.CheckIsHit(null, new Position(Letters.H, 1)),
+                Throws.ArgumentNullException);
         }
     }
 }

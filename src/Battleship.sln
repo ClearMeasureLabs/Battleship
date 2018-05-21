@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2003
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battleship.GameController", "Battleship.GameController\Battleship.GameController.csproj", "{3DCAF6ED-9C5D-4D01-9C78-BFA2340F7A9B}"
 EndProject
@@ -12,6 +12,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battleship.Ascii.Tests", "Battleship.Ascii.Tests\Battleship.Ascii.Tests.csproj", "{8A54C3A1-70C3-4C92-A44A-1CEFB0E73835}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battleship.GameController.ATDD", "Battleship.GameController.ATDD\Battleship.GameController.ATDD.csproj", "{655EBD7C-982D-495C-9792-67731B7E1754}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1CAA7935-2886-4243-B6EB-82F965171719}"
+	ProjectSection(SolutionItems) = preProject
+		CodeCoverage.runsettings = CodeCoverage.runsettings
+		..\default.ps1 = ..\default.ps1
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
