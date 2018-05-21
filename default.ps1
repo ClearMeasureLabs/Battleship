@@ -27,7 +27,7 @@ properties {
 }
 
 task default -depends Init, Compile, Test
-task ci -depends Init, Compile, Test
+task ci -depends Init, Compile, CodeCoverage
 
 task Init {
     Write-Host("##[section]Starting: Build task 'Init'")
