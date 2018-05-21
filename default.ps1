@@ -26,7 +26,7 @@ properties {
     if ([string]::IsNullOrEmpty($projectConfig)) {$projectConfig = "Release"}
 }
 
-task default -depends Init, Compile, Test
+task default -depends Init, Compile, CodeCoverage
 task ci -depends Init, Compile, Test
 
 task Init {
