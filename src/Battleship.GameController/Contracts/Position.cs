@@ -67,6 +67,19 @@
             return position.Column == Column && position.Row == Row;
         }
 
+        public bool Equals(Position other)
+        {
+            return Column == other.Column && Row == other.Row;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((int) Column * 397) ^ Row;
+            }
+        }
+
         #endregion
     }
 }
