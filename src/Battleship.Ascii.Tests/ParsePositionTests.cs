@@ -1,16 +1,13 @@
 ﻿
+using Battleship.GameController.Contracts;
 using NUnit.Framework;
 
 namespace Battleship.Ascii.Tests
 {
-   using Battleship.GameController.Contracts;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    [TestClass]
-    [TestFixture]
+   [TestFixture]
    public class ParsePositionTests
    {
-      [TestMethod, Test]
+      [Test]
       public void ParseLetterNumber()
       {
          var actual = Program.ParsePosition("A1");

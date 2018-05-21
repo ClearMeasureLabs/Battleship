@@ -18,14 +18,16 @@ properties {
     $package_file = "$build_dir\latestVersion\" + $projectName + "_Package.zip"
     $runOctoPack = $env:RunOctoPack
 
-	$testresults_dir = "$base_dir\TestResults"
+	$vs2017_dir = "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise";
+    $vstest_dir = "$vs2017_dir\Common7\IDE\CommonExtensions\Microsoft\TestWindow"
+    $testresults_dir = "$base_dir\TestResults"
 
     if ([string]::IsNullOrEmpty($version)) { $version = "1.0.0"}
     if ([string]::IsNullOrEmpty($projectConfig)) {$projectConfig = "Release"}
 }
 
 task default -depends Init, Compile, Test
-task ci -depends Init, CommonAssemblyInfo, Compile, CodeCoverage
+task ci -depends Init, Compile, Test
 
 task Init {
     Write-Host("##[section]Starting: Build task 'Init'")
@@ -69,20 +71,6 @@ task AcceptanceTest {
         & $nunitPath\nunit3-console.exe $test_dir\$acceptanceTestAssembly --workers=1 --noheader --result="$build_dir\AcceptanceTestResult.xml"`;format=nunit2 --out="$build_dir\AcceptanceTestResult.txt"
 	}
 	Write-Host("##[section]Finishing: Build task 'AcceptanceTest'")
-}
-
-task RebuildDatabase -depends ConnectionString {
-    Write-Host("##[section]Starting: Build task 'RebuildDatabase'")
-    exec {
-        & $AliaSql Rebuild $databaseServer $databaseName $databaseScripts
-    }
-    Write-Host("##[section]Finishing: Build task 'RebuildDatabase'")
-}
-
-task CommonAssemblyInfo {   
-    Write-Host("##[section]Starting: Build task 'CommonAssemblyInfo'")
-    create-commonAssemblyInfo "$version" $projectName "$source_dir\CommonAssemblyInfo.cs"
-    Write-Host("##[section]Finishing: Build task 'CommonAssemblyInfo'")
 }
 
 task CodeCoverage {
