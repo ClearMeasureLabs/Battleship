@@ -1,4 +1,6 @@
-﻿namespace Battleship.GameController.Tests.GameControllerTests
+﻿using NUnit.Framework;
+
+namespace Battleship.GameController.Tests.GameControllerTests
 {
     using System;
 
@@ -9,13 +11,13 @@
     /// <summary>
     /// The game controller tests.
     /// </summary>
-    [TestClass]
+    [TestClass, TestFixture]
     public class GameControllerTests
     {
         /// <summary>
         /// The should hit the ship.
         /// </summary>
-        [TestMethod]
+        [TestMethod, Test]
         public void ShouldHitTheShip()
         {
             var ships = GameController.InitializeShips();
@@ -39,7 +41,7 @@
         /// <summary>
         /// The should not hit the ship.
         /// </summary>
-        [TestMethod]
+        [TestMethod, Test]
         public void ShouldNotHitTheShip()
         {
             var ships = GameController.InitializeShips();

@@ -1,4 +1,6 @@
-﻿namespace Battleship.GameController.Tests.GameControllerTests
+﻿using NUnit.Framework;
+
+namespace Battleship.GameController.Tests.GameControllerTests
 {
     using System.Collections.Generic;
 
@@ -9,13 +11,13 @@
     /// <summary>
     /// The is ship valid tests.
     /// </summary>
-    [TestClass]
+    [TestClass, TestFixture]
     public class IsShipValidTests
     {
         /// <summary>
         /// The ship is not valid.
         /// </summary>
-        [TestMethod]
+        [TestMethod, Test]
         public void ShipIsNotValid()
         {
             var ship = new Ship { Name = "TestShip", Size = 3 };
@@ -27,7 +29,7 @@
         /// <summary>
         /// The ship is valid.
         /// </summary>
-        [TestMethod]
+        [TestMethod, Test]
         public void ShipIsValid()
         {
             var positions = new List<Position> { new Position(Letters.A, 1), new Position(Letters.A, 1), new Position(Letters.A, 1) };
