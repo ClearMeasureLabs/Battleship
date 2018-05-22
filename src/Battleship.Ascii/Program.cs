@@ -1,4 +1,5 @@
 ﻿
+using System.Net.Mime;
 using Battleship.GameController.Commands;
 using StructureMap;
 
@@ -58,9 +59,18 @@ namespace Battleship.Ascii
             do
             {
                 Console.WriteLine();
-                Console.WriteLine("Player, it's your turn");
-                Console.WriteLine("Enter coordinates for your shot :");
-                var position = ParsePosition(Console.ReadLine());
+                Console.WriteLine("Player, it's your turn.");
+                Console.WriteLine("Enter coordinates for your shot (A1-H8), 'Q' to Quit:");
+                var input = Console.ReadLine();
+                switch (input?.ToUpper())
+                {
+                    case "Q":
+                        return;
+                    default:
+                        break;
+
+                }
+                var position = ParsePosition(input);
                 var isHit = GameController.CheckIsHit(enemyFleet, position);
                 if (isHit)
                 {
