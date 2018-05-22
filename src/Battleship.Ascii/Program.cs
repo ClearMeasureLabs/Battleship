@@ -8,8 +8,8 @@ namespace Battleship.Ascii
    using System.Collections.Generic;
    using System.Linq;
 
-   using Battleship.GameController;
-   using Battleship.GameController.Contracts;
+   using GameController;
+   using GameController.Contracts;
 
    internal class Program
    {
