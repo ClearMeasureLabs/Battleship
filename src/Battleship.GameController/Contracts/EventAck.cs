@@ -1,6 +1,6 @@
 ﻿namespace Battleship.GameController.Contracts
 {
-    public enum Ack
+    public enum EventAck
     {
         Ok
     }

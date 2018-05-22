@@ -2,7 +2,7 @@
 
 namespace Battleship.GameController.Events
 {
-    public class ShipHitEvent : IRequest<Ack>
+    public class ShipHitEvent : IRequest<EventAck>
     {
         public Position Position { get; }
 

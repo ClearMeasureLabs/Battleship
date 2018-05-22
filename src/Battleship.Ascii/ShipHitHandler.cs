@@ -5,12 +5,12 @@ using Battleship.GameController.Events;
 
 namespace Battleship.Ascii
 {
-    public class ShipHitHandler : IRequestHandler<ShipHitEvent, Ack>
+    public class ShipHitHandler : IRequestHandler<ShipHitEvent, EventAck>
     {
-        public Ack Handle(ShipHitEvent request)
+        public EventAck Handle(ShipHitEvent request)
         {
 //            Console.WriteLine("{0} hit", request.Position.ShipAtThisPosition.Name);
-            return Ack.Ok;
+            return EventAck.Ok;
         }
     }
 }

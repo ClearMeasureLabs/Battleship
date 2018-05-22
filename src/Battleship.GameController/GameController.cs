@@ -19,7 +19,7 @@ namespace Battleship.GameController
                 if (position.Equals(shotPosition))
                 {
                     position.Status = PositionStatus.Hit;
-                    bus?.Send(new ShipHitEvent(shotPosition));
+                    bus?.SendEvent(new ShipHitEvent(shotPosition));
                     return true;
                 }
                     

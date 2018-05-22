@@ -24,7 +24,6 @@ namespace Battleship.Ascii
         {
             iocContainer = new Container(new StructureMapRegistry());
             _bus = iocContainer.GetInstance<Bus>();
-
             Console.WriteLine("                                     |__");
             Console.WriteLine(@"                                     |\/");
             Console.WriteLine("                                     ---");
