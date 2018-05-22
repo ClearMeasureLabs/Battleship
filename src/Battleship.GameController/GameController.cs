@@ -12,24 +12,50 @@ namespace Battleship.GameController
     public class GameController
     {
         private Game _game;
-        private IEnumerable<Ship> _myFleet;
-        private IEnumerable<Ship> _enemyFleet;
         private readonly Bus _bus;
+        private readonly ComputerAiController _computerAiController;
 
         public GameController(Bus bus)
         {
             _bus = bus;
+            _computerAiController = new ComputerAiController();
+            _game = new Game();
         }
 
         public void Run()
         {
-            _game = new Game();
             _bus.SendEvent(new GameStartedEvent());
             _bus.SendEvent(new GameAnnouncementEvent("Initializing the game"));
             InitializeGame();
 
             _bus.SendEvent(new GameAnnouncementEvent("Get ready to play!"));
             StartGame();
+        }
+
+        private void InitializeGame()
+        {
+            _bus.SendEvent(new GameAnnouncementEvent("*************************************************"));
+            InitializeMyFleet();
+            _bus.SendEvent(new GameAnnouncementEvent("*************************************************"));
+            _computerAiController.InitializeFleet(_game.ComputerBoard);
+
+        }
+
+        private void InitializeMyFleet()
+        {
+            _bus.Send(new UserMessageCommand("Please position your fleet (Game board size is from A to H and 1 to 8) :"));
+
+            foreach (var ship in _game.PlayerBoard.Fleet)
+            {
+                _bus.SendEvent(new GameAnnouncementEvent(""));
+                _bus.Send(new UserMessageCommand($"Please enter the positions for the {ship.Name} (size: {ship.Size})"));
+
+                for (var i = 1; i <= ship.Size; i++)
+                {
+                    var input = _bus.Send(new UserPromptQuery($"Enter position {i} of {ship.Size} (i.e A3):"));
+                    ship.AddPosition(input);
+                }
+            }
         }
 
         private void StartGame()
@@ -52,7 +78,7 @@ namespace Battleship.GameController
                 }
 
                 var position = ParsePosition(input);
-                var isHit = CheckIsHit(_enemyFleet, position, _bus);
+                var isHit = CheckIsHit(_game.ComputerBoard.Fleet, position, _bus);
                 if (isHit)
                 {
                     _bus.Send(new ShowHitCommand(goodThing, "Yeah! Nice hit!"));
@@ -65,8 +91,9 @@ namespace Battleship.GameController
                 _bus.SendEvent(new GameAnnouncementEvent("*************************************************"));
                 _bus.SendEvent(new GameAnnouncementEvent("It's the computer's turn."));
 
-                position = GetRandomPosition();
-                isHit = CheckIsHit(_myFleet, position, _bus);
+                position = _computerAiController.ChooseMissileTarget();
+                isHit = CheckIsHit(_game.PlayerBoard.Fleet, position, _bus);
+
                 _bus.Send(new UserMessageCommand($"Computer shot in {position.Coordinate.Column}{position.Coordinate.Row}"));
                 _bus.Send(new UserMessageCommand(""));
                 if (isHit)
@@ -78,75 +105,6 @@ namespace Battleship.GameController
                     _bus.Send(new ShowMissCommand(goodThing, "Miss"));
                 }
             } while (true);
-        }
-
-        private Position GetRandomPosition()
-        {
-            var rows = 8;
-            var lines = 8;
-            var random = new Random();
-            var letter = (Letters) random.Next(lines);
-            var number = random.Next(rows);
-            var position = new Position(letter, number);
-            return position;
-        }
-
-        private void InitializeGame()
-        {
-            _bus.SendEvent(new GameAnnouncementEvent("*************************************************"));
-            InitializeMyFleet();
-            _bus.SendEvent(new GameAnnouncementEvent("*************************************************"));
-            InitializeEnemyFleet();
-        }
-
-        private void InitializeMyFleet()
-        {
-            _myFleet = Ship.GetNewFleet();
-            _bus.Send(new UserMessageCommand("Please position your fleet (Game board size is from A to H and 1 to 8) :"));
-
-            foreach (var ship in _myFleet)
-            {
-                _bus.SendEvent(new GameAnnouncementEvent(""));
-                _bus.Send(new UserMessageCommand($"Please enter the positions for the {ship.Name} (size: {ship.Size})"));
-                for (var i = 1; i <= ship.Size; i++)
-                {
-                    var input = _bus.Send(new UserPromptQuery($"Enter position {i} of {ship.Size} (i.e A3):"));
-                    ship.AddPosition(input);
-                }
-            }
-        }
-
-        private void InitializeEnemyFleet()
-        {
-            _enemyFleet = Ship.GetNewFleet();
-            var fleetList = _enemyFleet.ToList();
-
-            Ship carrier = fleetList.Single(s=>s.Name.Equals(Ship.AircraftCarrier));
-            fleetList[0].Positions.Add(new Position(Letters.B, 4, carrier));
-            fleetList[0].Positions.Add(new Position(Letters.B, 5, carrier));
-            fleetList[0].Positions.Add(new Position(Letters.B, 6, carrier));
-            fleetList[0].Positions.Add(new Position(Letters.B, 7, carrier));
-            fleetList[0].Positions.Add(new Position(Letters.B, 8, carrier));
-
-            Ship battleship = fleetList.Single(s => s.Name.Equals(Ship.Battleship));
-            fleetList[1].Positions.Add(new Position(Letters.E, 6, battleship));
-            fleetList[1].Positions.Add(new Position(Letters.E, 7, battleship));
-            fleetList[1].Positions.Add(new Position(Letters.E, 8, battleship));
-            fleetList[1].Positions.Add(new Position(Letters.E, 9, battleship));
-
-            Ship destroyer = fleetList.Single(s => s.Name.Equals(Ship.Destroyer));
-            fleetList[2].Positions.Add(new Position(Letters.A, 3, destroyer));
-            fleetList[2].Positions.Add(new Position(Letters.B, 3, destroyer));
-            fleetList[2].Positions.Add(new Position(Letters.C, 3, destroyer));
-
-            Ship submarine = fleetList.Single(s => s.Name.Equals(Ship.Submarine));
-            fleetList[3].Positions.Add(new Position(Letters.F, 8, submarine));
-            fleetList[3].Positions.Add(new Position(Letters.G, 8, submarine));
-            fleetList[3].Positions.Add(new Position(Letters.H, 8, submarine));
-
-            Ship patrolBoat = fleetList.Single(s => s.Name.Equals(Ship.Submarine));
-            fleetList[4].Positions.Add(new Position(Letters.C, 5, patrolBoat));
-            fleetList[4].Positions.Add(new Position(Letters.C, 6, patrolBoat));
         }
 
         public bool CheckIsHit(IEnumerable<Ship> ships, Position shotPosition, Bus bus)

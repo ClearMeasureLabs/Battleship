@@ -4,7 +4,12 @@ namespace Battleship.GameController.Contracts
 {
     public class Board
     {
-        public HashSet<Position> Positions { get; set; }
-        public HashSet<Ship> Ships { get; set; }
+        public IEnumerable<Position> Positions { get; set; }
+        public IEnumerable<Ship> Fleet { get; set; }
+
+        public Board()
+        {
+            Fleet = Ship.GetNewFleet();
+        }
     }
 }

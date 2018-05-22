@@ -69,6 +69,7 @@
     <Compile Include="Commands\ShowHitCommand.cs" />
     <Compile Include="Commands\ShowMissCommand.cs" />
     <Compile Include="Commands\ShowCannonCommand.cs" />
+    <Compile Include="ComputerAiController.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
