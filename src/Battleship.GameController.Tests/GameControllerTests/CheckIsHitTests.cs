@@ -30,7 +30,7 @@ namespace Battleship.GameController.Tests.GameControllerTests
                 counter++;
             }
 
-            var result = GameController.CheckIsHit(ships, new Position(Letters.A, 1));
+            var result = GameController.CheckIsHit(ships, new Position(Letters.A, 1), null);
             Assert.IsTrue(result);
         }
 
@@ -54,30 +54,10 @@ namespace Battleship.GameController.Tests.GameControllerTests
                 counter++;
             }
 
-            var result = GameController.CheckIsHit(ships, new Position(Letters.H, 1));
+            var result = GameController.CheckIsHit(ships, new Position(Letters.H, 1), null);
             Assert.IsFalse(result);
         }
 
-        /// <summary>
-        /// The throw exception if positstion is null.
-        /// </summary>
-        [Test]
-        public void ThrowExceptionIfPositstionIsNull()
-        {
-            Assert.That(() =>
-                    GameController.CheckIsHit(new []{new Ship()}, null),
-                Throws.ArgumentNullException);
-        }
-
-        /// <summary>
-        /// The throw exception if ship is null.
-        /// </summary>
-        [Test]
-        public void ThrowExceptionIfShipIsNull()
-        {
-            Assert.That(() => 
-                GameController.CheckIsHit(null, new Position(Letters.H, 1)),
-                Throws.ArgumentNullException);
-        }
+    
     }
 }

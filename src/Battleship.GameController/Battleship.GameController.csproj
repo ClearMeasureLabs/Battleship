@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Bus.cs" />
     <Compile Include="Commands\InitializeMyFleetCommand.cs" />
+    <Compile Include="Contracts\Ack.cs" />
     <Compile Include="Contracts\Board.cs" />
     <Compile Include="Contracts\Game.cs" />
     <Compile Include="Contracts\Position.cs" />
@@ -59,9 +60,9 @@
     <Compile Include="IRequestHandler.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Events\ShipHitEvent.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Events\" />
     <Folder Include="Queries\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

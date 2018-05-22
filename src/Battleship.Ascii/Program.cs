@@ -71,7 +71,7 @@ namespace Battleship.Ascii
 
                 }
                 var position = ParsePosition(input);
-                var isHit = GameController.CheckIsHit(enemyFleet, position);
+                var isHit = GameController.CheckIsHit(enemyFleet, position, _bus);
                 if (isHit)
                 {
                     ShowHit(goodThing, "Yeah ! Nice hit !");
@@ -85,7 +85,7 @@ namespace Battleship.Ascii
                 }
 
                 position = GetRandomPosition();
-                GameController.CheckIsHit(myFleet, position);
+                GameController.CheckIsHit(myFleet, position, _bus);
                 Console.WriteLine();
                 Console.WriteLine("Computer shot in {0}{1} and {2}", position.Column, position.Row, isHit ? "has hit your ship !" : "miss");
                 if (isHit)
@@ -169,12 +169,13 @@ namespace Battleship.Ascii
         private static void InitializeEnemyFleet()
         {
             enemyFleet = GameController.InitializeShips().ToList();
+            Ship carrier = enemyFleet[0];
 
-            enemyFleet[0].Positions.Add(new Position { Column = Letters.B, Row = 4 });
-            enemyFleet[0].Positions.Add(new Position { Column = Letters.B, Row = 5 });
-            enemyFleet[0].Positions.Add(new Position { Column = Letters.B, Row = 6 });
-            enemyFleet[0].Positions.Add(new Position { Column = Letters.B, Row = 7 });
-            enemyFleet[0].Positions.Add(new Position { Column = Letters.B, Row = 8 });
+            enemyFleet[0].Positions.Add(new Position { ShipAtThisPosition = carrier, Column = Letters.B, Row = 4 });
+            enemyFleet[0].Positions.Add(new Position { ShipAtThisPosition = carrier, Column = Letters.B, Row = 5 });
+            enemyFleet[0].Positions.Add(new Position { ShipAtThisPosition = carrier, Column = Letters.B, Row = 6 });
+            enemyFleet[0].Positions.Add(new Position { ShipAtThisPosition = carrier, Column = Letters.B, Row = 7 });
+            enemyFleet[0].Positions.Add(new Position { ShipAtThisPosition = carrier, Column = Letters.B, Row = 8 });
 
             enemyFleet[1].Positions.Add(new Position { Column = Letters.E, Row = 6 });
             enemyFleet[1].Positions.Add(new Position { Column = Letters.E, Row = 7 });
