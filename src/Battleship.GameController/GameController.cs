@@ -68,45 +68,57 @@ namespace Battleship.GameController
             {
                 _bus.SendEvent(new GameAnnouncementEvent("*************************************************"));
                 _bus.Send(new UserMessageCommand("Player, it's your turn."));
-                var input = _bus.Send(new UserPromptQuery("Enter coordinates for your shot (A1-H8), 'S' to Surrender:"));
-                switch (input?.ToUpper())
-                {
-                    case "S":
-                        return;
-                    default:
-                        break;
-                }
-
-                var position = ParsePosition(input);
-                var isHit = CheckIsHit(_game.ComputerBoard.Fleet, position, _bus);
-                if (isHit)
-                {
-                    _bus.Send(new ShowHitCommand(goodThing, "Yeah! Nice hit!"));
-                }
-                else
-                {
-                    _bus.Send(new ShowMissCommand(minorBad, "Miss"));
-                }
+                var exitSelected = ExecutePlayerTurn(goodThing, minorBad);
+                if (exitSelected) break;
 
                 _bus.SendEvent(new GameAnnouncementEvent("*************************************************"));
                 _bus.SendEvent(new GameAnnouncementEvent("It's the computer's turn."));
 
-                position = _computerAiController.ChooseMissileTarget();
-                isHit = CheckIsHit(_game.PlayerBoard.Fleet, position, _bus);
-
-                _bus.Send(new UserMessageCommand($"Computer shot in {position.Coordinate.Column}{position.Coordinate.Row}"));
-                _bus.Send(new UserMessageCommand(""));
-                if (isHit)
-                {
-                    _bus.Send(new ShowHitCommand(badThing, "Oh no! You've been hit!"));
-                }
-                else
-                {
-                    _bus.Send(new ShowMissCommand(goodThing, "Miss"));
-                }
+                ExecuteComputerTurn(badThing, goodThing);
             } while (true);
         }
 
+        private void ExecuteComputerTurn(ConsoleColor badThing, ConsoleColor goodThing)
+        {
+            var position = _computerAiController.ChooseMissileTarget();
+            var isHit = CheckIsHit(_game.PlayerBoard.Fleet, position, _bus);
+
+            _bus.Send(new UserMessageCommand($"Computer shot in {position.Coordinate.Column}{position.Coordinate.Row}"));
+            _bus.Send(new UserMessageCommand(""));
+            if (isHit)
+            {
+                _bus.Send(new ShowHitCommand(badThing, "Oh no! You've been hit!"));
+            }
+            else
+            {
+                _bus.Send(new ShowMissCommand(goodThing, "Miss"));
+            }
+        }
+
+        private bool ExecutePlayerTurn(ConsoleColor goodThing, ConsoleColor minorBad)
+        {
+            var input = _bus.Send(new UserPromptQuery("Enter coordinates for your shot (A1-H8), 'S' to Surrender:"));
+            switch (input?.ToUpper())
+            {
+                case "S":
+                    return true;
+                default:
+                    break;
+            }
+
+            var position = ParsePosition(input);
+            var isHit = CheckIsHit(_game.ComputerBoard.Fleet, position, _bus);
+            if (isHit)
+            {
+                _bus.Send(new ShowHitCommand(goodThing, "Yeah! Nice hit!"));
+            }
+            else
+            {
+                _bus.Send(new ShowMissCommand(minorBad, "Miss"));
+            }
+
+            return false;
+        }
         public bool CheckIsHit(IEnumerable<Ship> ships, Position shotPosition, Bus bus)
         {
             if (ships == null) throw new ArgumentNullException("ships");
