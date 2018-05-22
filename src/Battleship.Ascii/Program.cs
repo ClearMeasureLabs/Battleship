@@ -46,6 +46,9 @@ namespace Battleship.Ascii
 
         private static void StartGame()
         {
+            var goodThing = ConsoleColor.Green;
+            var badThing = ConsoleColor.Red;
+            var minorBad = ConsoleColor.DarkYellow;
             ShowCannon();
             /*
              Command List:
@@ -61,28 +64,28 @@ namespace Battleship.Ascii
                 var isHit = GameController.CheckIsHit(enemyFleet, position);
                 if (isHit)
                 {
-                    ShowHit();
+                    ShowHit(goodThing, "Yeah ! Nice hit !");
                 }
                 else
                 {
                     var color = Console.ForegroundColor;
-                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.ForegroundColor = minorBad;
                     Console.WriteLine("Miss");
                     Console.ForegroundColor = color;
                 }
 
                 position = GetRandomPosition();
-                isHit = GameController.CheckIsHit(myFleet, position);
+                GameController.CheckIsHit(myFleet, position);
                 Console.WriteLine();
                 Console.WriteLine("Computer shot in {0}{1} and {2}", position.Column, position.Row, isHit ? "has hit your ship !" : "miss");
                 if (isHit)
                 {
-                    ShowHit();
+                    ShowHit(badThing, "Oh no! You've been hit!");
                 }
                 else
                 {
                     var color = Console.ForegroundColor;
-                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.ForegroundColor = goodThing;
                     Console.WriteLine("Miss");
                     Console.ForegroundColor = color;
                 }
@@ -90,11 +93,11 @@ namespace Battleship.Ascii
             while (true);
         }
 
-        private static void ShowHit()
+        private static void ShowHit(ConsoleColor color, string message)
         {
             Console.Beep();
-            var color = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Red;
+            var origColor = Console.ForegroundColor;
+            Console.ForegroundColor = color;
             Console.WriteLine(@"                \         .  ./");
             Console.WriteLine(@"              \      .:"";'.:..""   /");
             Console.WriteLine(@"                  (M^^.^~~:.'"").");
@@ -103,8 +106,8 @@ namespace Battleship.Ascii
             Console.WriteLine(@"            -   (\- |  \ /  |  /)  -");
             Console.WriteLine(@"                 -\  \     /  /-");
             Console.WriteLine(@"                   \  \   /  /");
-            Console.WriteLine("Yeah ! Nice hit !");
-            Console.ForegroundColor = color;
+            Console.WriteLine(message);
+            Console.ForegroundColor = origColor;
 
         }
 
