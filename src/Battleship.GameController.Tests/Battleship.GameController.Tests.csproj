@@ -59,6 +59,7 @@
     <Compile Include="GameControllerTests\CheckIsHitTests.cs" />
     <Compile Include="GameControllerTests\IsShipValidTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SampleTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Battleship.GameController\Battleship.GameController.csproj">
