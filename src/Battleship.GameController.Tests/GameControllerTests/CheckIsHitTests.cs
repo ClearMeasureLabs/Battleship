@@ -16,7 +16,7 @@ namespace Battleship.GameController.Tests.GameControllerTests
         [Test]
         public void ShouldHitTheShip()
         {
-            var ships = GameController.InitializeShips();
+            var ships = new GameController(null).InitializeShips();
 
             var counter = 0;
             foreach (var ship in ships)
@@ -30,7 +30,7 @@ namespace Battleship.GameController.Tests.GameControllerTests
                 counter++;
             }
 
-            var result = GameController.CheckIsHit(ships, new Position(Letters.A, 1), null);
+            var result = new GameController(null).CheckIsHit(ships, new Position(Letters.A, 1), null);
             Assert.IsTrue(result);
         }
 
@@ -40,7 +40,7 @@ namespace Battleship.GameController.Tests.GameControllerTests
         [Test]
         public void ShouldNotHitTheShip()
         {
-            var ships = GameController.InitializeShips();
+            var ships = new GameController(null).InitializeShips();
 
             var counter = 0;
             foreach (var ship in ships)
@@ -54,7 +54,7 @@ namespace Battleship.GameController.Tests.GameControllerTests
                 counter++;
             }
 
-            var result = GameController.CheckIsHit(ships, new Position(Letters.H, 1), null);
+            var result = new GameController(null).CheckIsHit(ships, new Position(Letters.H, 1), null);
             Assert.IsFalse(result);
         }
 

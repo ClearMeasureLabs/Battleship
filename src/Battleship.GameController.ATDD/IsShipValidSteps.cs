@@ -25,7 +25,7 @@ namespace Battleship.GameController.ATDD
         [When]
         public void WhenICheckIfTheShipIsValid()
         {
-            result = GameController.IsShipValid(ship);
+            result = new GameController(null).IsShipValid(ship);
         }
 
         [Then]

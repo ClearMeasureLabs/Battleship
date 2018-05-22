@@ -10,7 +10,7 @@ namespace Battleship.Ascii.Tests
       [Test]
       public void ParseLetterNumber()
       {
-         var actual = Program.ParsePosition("A1");
+         var actual = GameController.GameController.ParsePosition("A1");
 
          var expected = new Position(Letters.A, 1);
 

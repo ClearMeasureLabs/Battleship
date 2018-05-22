@@ -17,7 +17,7 @@ namespace Battleship.GameController.Tests.GameControllerTests
         public void ShipIsNotValid()
         {
             var ship = new Ship { Name = "TestShip", Size = 3 };
-            var result = GameController.IsShipValid(ship);
+            var result = new GameController(null).IsShipValid(ship);
 
             Assert.IsFalse(result);
         }
@@ -31,7 +31,7 @@ namespace Battleship.GameController.Tests.GameControllerTests
             var positions = new List<Position> { new Position(Letters.A, 1), new Position(Letters.A, 1), new Position(Letters.A, 1) };
 
             var ship = new Ship { Name = "TestShip", Size = 3, Positions = positions };
-            var result = GameController.IsShipValid(ship);
+            var result = new GameController(null).IsShipValid(ship);
 
             Assert.IsTrue(result);
         }
