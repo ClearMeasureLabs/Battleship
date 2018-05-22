@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
-using Battleship.GameController.Commands;
 using Battleship.GameController.Contracts;
 using Battleship.GameController.Events;
 
@@ -10,10 +9,10 @@ namespace Battleship.GameController
 {
     public class GameController
     {
-        private Bus _bus;
         private static List<Ship> _myFleet;
 
         private static List<Ship> _enemyFleet;
+        private readonly Bus _bus;
 
         public GameController(Bus bus)
         {
@@ -49,18 +48,15 @@ namespace Battleship.GameController
                         return;
                     default:
                         break;
-
                 }
+
                 var position = ParsePosition(input);
                 var isHit = CheckIsHit(_enemyFleet, position, _bus);
                 if (isHit)
                 {
                     ShowHit(goodThing, "Yeah ! Nice hit !");
                     //HACK: Remove this after the demo
-                    if (input == "C6")
-                    {
-                        Console.WriteLine("***************You sank the Patrol Boat!************");
-                    }
+                    if (input == "C6") Console.WriteLine("***************You sank the Patrol Boat!************");
                 }
                 else
                 {
@@ -69,6 +65,7 @@ namespace Battleship.GameController
                     Console.WriteLine("Miss");
                     Console.ForegroundColor = color;
                 }
+
                 Console.WriteLine("*****************************************");
                 Console.WriteLine("It's the computer's turn.");
 
@@ -87,16 +84,15 @@ namespace Battleship.GameController
                     Console.WriteLine("Miss");
                     Console.ForegroundColor = color;
                 }
-            }
-            while (true);
+            } while (true);
         }
 
         private Position GetRandomPosition()
         {
-            int rows = 8;
-            int lines = 8;
+            var rows = 8;
+            var lines = 8;
             var random = new Random();
-            var letter = (Letters)random.Next(lines);
+            var letter = (Letters) random.Next(lines);
             var number = random.Next(rows);
             var position = new Position(letter, number);
             return position;
@@ -131,29 +127,29 @@ namespace Battleship.GameController
         private void InitializeEnemyFleet()
         {
             _enemyFleet = InitializeShips().ToList();
-            Ship carrier = _enemyFleet[0];
+            var carrier = _enemyFleet[0];
 
-            _enemyFleet[0].Positions.Add(new Position { ShipAtThisPosition = carrier, Column = Letters.B, Row = 4 });
-            _enemyFleet[0].Positions.Add(new Position { ShipAtThisPosition = carrier, Column = Letters.B, Row = 5 });
-            _enemyFleet[0].Positions.Add(new Position { ShipAtThisPosition = carrier, Column = Letters.B, Row = 6 });
-            _enemyFleet[0].Positions.Add(new Position { ShipAtThisPosition = carrier, Column = Letters.B, Row = 7 });
-            _enemyFleet[0].Positions.Add(new Position { ShipAtThisPosition = carrier, Column = Letters.B, Row = 8 });
+            _enemyFleet[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 4});
+            _enemyFleet[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 5});
+            _enemyFleet[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 6});
+            _enemyFleet[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 7});
+            _enemyFleet[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 8});
 
-            _enemyFleet[1].Positions.Add(new Position { Column = Letters.E, Row = 6 });
-            _enemyFleet[1].Positions.Add(new Position { Column = Letters.E, Row = 7 });
-            _enemyFleet[1].Positions.Add(new Position { Column = Letters.E, Row = 8 });
-            _enemyFleet[1].Positions.Add(new Position { Column = Letters.E, Row = 9 });
+            _enemyFleet[1].Positions.Add(new Position {Column = Letters.E, Row = 6});
+            _enemyFleet[1].Positions.Add(new Position {Column = Letters.E, Row = 7});
+            _enemyFleet[1].Positions.Add(new Position {Column = Letters.E, Row = 8});
+            _enemyFleet[1].Positions.Add(new Position {Column = Letters.E, Row = 9});
 
-            _enemyFleet[2].Positions.Add(new Position { Column = Letters.A, Row = 3 });
-            _enemyFleet[2].Positions.Add(new Position { Column = Letters.B, Row = 3 });
-            _enemyFleet[2].Positions.Add(new Position { Column = Letters.C, Row = 3 });
+            _enemyFleet[2].Positions.Add(new Position {Column = Letters.A, Row = 3});
+            _enemyFleet[2].Positions.Add(new Position {Column = Letters.B, Row = 3});
+            _enemyFleet[2].Positions.Add(new Position {Column = Letters.C, Row = 3});
 
-            _enemyFleet[3].Positions.Add(new Position { Column = Letters.F, Row = 8 });
-            _enemyFleet[3].Positions.Add(new Position { Column = Letters.G, Row = 8 });
-            _enemyFleet[3].Positions.Add(new Position { Column = Letters.H, Row = 8 });
+            _enemyFleet[3].Positions.Add(new Position {Column = Letters.F, Row = 8});
+            _enemyFleet[3].Positions.Add(new Position {Column = Letters.G, Row = 8});
+            _enemyFleet[3].Positions.Add(new Position {Column = Letters.H, Row = 8});
 
-            _enemyFleet[4].Positions.Add(new Position { Column = Letters.C, Row = 5 });
-            _enemyFleet[4].Positions.Add(new Position { Column = Letters.C, Row = 6 });
+            _enemyFleet[4].Positions.Add(new Position {Column = Letters.C, Row = 5});
+            _enemyFleet[4].Positions.Add(new Position {Column = Letters.C, Row = 6});
         }
 
         public bool CheckIsHit(IEnumerable<Ship> ships, Position shotPosition, Bus bus)
@@ -170,7 +166,7 @@ namespace Battleship.GameController
                     bus?.SendEvent(new ShipHitEvent(shotPosition));
                     return true;
                 }
-                    
+
             shotPosition.Status = PositionStatus.Miss;
             return false;
         }
@@ -216,7 +212,6 @@ namespace Battleship.GameController
             Console.WriteLine(@"                   \  \   /  /");
             Console.WriteLine(message);
             Console.ForegroundColor = origColor;
-
         }
 
         private void ShowCannon()
@@ -236,8 +231,8 @@ namespace Battleship.GameController
 
         public static Position ParsePosition(string input)
         {
-            var letter = (Letters)Enum.Parse(typeof(Letters), input.ToUpper().Substring(0, 1));
-            var number = Int32.Parse(input.Substring(1, 1));
+            var letter = (Letters) Enum.Parse(typeof(Letters), input.ToUpper().Substring(0, 1));
+            var number = int.Parse(input.Substring(1, 1));
             return new Position(letter, number);
         }
     }
