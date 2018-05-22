@@ -1,4 +1,6 @@
-﻿namespace Battleship.GameController.Contracts
+﻿using System;
+
+namespace Battleship.GameController.Contracts
 {
     public class Position
     {
@@ -15,6 +17,12 @@
 
         public Position()
         {
+        }
+
+        public Position(string positionCode)
+        {
+            Column = (Letters)Enum.Parse(typeof(Letters), positionCode.ToUpper().Substring(0, 1));
+            Row = int.Parse(positionCode.Substring(1, 1));
         }
 
         public override bool Equals(object obj)

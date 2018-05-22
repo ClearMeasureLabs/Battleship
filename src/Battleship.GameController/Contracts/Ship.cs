@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Media;
@@ -10,15 +9,16 @@ namespace Battleship.GameController.Contracts
     public class Ship : INotifyPropertyChanged
     {
         private bool _isPlaced;
-        public string Name { get; set; }
-        public List<Position> Positions { get; set; }
-        public Color Color { get; set; }
-        public int Size { get; set; }
 
         public Ship()
         {
             Positions = new List<Position>();
         }
+
+        public string Name { get; set; }
+        public List<Position> Positions { get; set; }
+        public Color Color { get; set; }
+        public int Size { get; set; }
 
         public bool IsPlaced
         {
@@ -34,13 +34,17 @@ namespace Battleship.GameController.Contracts
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void AddPosition(string input)
+        public void AddPosition(string positionCode)
         {
             if (Positions == null) Positions = new List<Position>();
 
-            var letter = (Letters) Enum.Parse(typeof(Letters), input.ToUpper().Substring(0, 1));
-            var number = int.Parse(input.Substring(1, 1));
-            Positions.Add(new Position {Column = letter, Row = number});
+            var position = new Position(positionCode)
+            {
+                ShipAtThisPosition = this,
+                Status = PositionStatus.None
+            };
+
+            Positions.Add(position);
         }
 
         [NotifyPropertyChangedInvocator]
