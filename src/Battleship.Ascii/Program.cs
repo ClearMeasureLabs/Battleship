@@ -1,6 +1,7 @@
 ﻿
 using System.Net.Mime;
 using Battleship.GameController.Commands;
+using Battleship.GameController.Events;
 using StructureMap;
 
 namespace Battleship.Ascii
@@ -24,21 +25,8 @@ namespace Battleship.Ascii
         {
             iocContainer = new Container(new StructureMapRegistry());
             _bus = iocContainer.GetInstance<Bus>();
-            Console.WriteLine("                                     |__");
-            Console.WriteLine(@"                                     |\/");
-            Console.WriteLine("                                     ---");
-            Console.WriteLine("                                     / | [");
-            Console.WriteLine("                              !      | |||");
-            Console.WriteLine("                            _/|     _/|-++'");
-            Console.WriteLine("                        +  +--|    |--|--|_ |-");
-            Console.WriteLine(@"                     { /|__|  |/\__|  |--- |||__/");
-            Console.WriteLine(@"                    +---------------___[}-_===_.'____                 /\");
-            Console.WriteLine(@"                ____`-' ||___-{]_| _[}-  |     |_[___\==--            \/   _");
-            Console.WriteLine(@" __..._____--==/___]_|__|_____________________________[___\==--____,------' .7");
-            Console.WriteLine(@"|                        Welcome to Battleship                         BB-61/");
-            Console.WriteLine(@" \_________________________________________________________________________|");
-            Console.WriteLine();
-
+            
+            _bus.SendEvent(new GameStartedEvent());
             Console.WriteLine("***************Initializing the game************");
             InitializeGame();
 

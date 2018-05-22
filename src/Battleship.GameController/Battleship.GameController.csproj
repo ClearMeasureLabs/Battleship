@@ -54,8 +54,10 @@
     <Compile Include="Contracts\Letters.cs" />
     <Compile Include="Contracts\PositionStatus.cs" />
     <Compile Include="Contracts\Ship.cs" />
+    <Compile Include="Events\GameStartedEvent.cs" />
     <Compile Include="GameController.cs" />
     <Compile Include="Handlers\InitializeMyFleetHandler.cs" />
+    <Compile Include="Handlers\ShowSplashOnGameStartedHandler.cs" />
     <Compile Include="IRequest.cs" />
     <Compile Include="IRequestHandler.cs" />
     <Compile Include="Properties\Annotations.cs" />
