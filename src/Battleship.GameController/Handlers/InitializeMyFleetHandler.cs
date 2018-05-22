@@ -16,6 +16,7 @@ namespace Battleship.GameController.Handlers
 
             foreach (var ship in ships)
             {
+                Console.WriteLine("*****************************************");
                 Console.WriteLine();
                 Console.WriteLine("Please enter the positions for the {0} (size: {1})", ship.Name, ship.Size);
                 for (var i = 1; i <= ship.Size; i++)

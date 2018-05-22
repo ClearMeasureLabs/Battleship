@@ -90,7 +90,7 @@ namespace Battleship.Ascii
                 Console.WriteLine("It's the computer's turn.");
 
                 position = GetRandomPosition();
-                GameController.CheckIsHit(myFleet, position, _bus);
+                isHit = GameController.CheckIsHit(myFleet, position, _bus);
                 Console.WriteLine();
                 Console.WriteLine("Computer shot in {0}{1}", position.Column, position.Row);
                 if (isHit)
