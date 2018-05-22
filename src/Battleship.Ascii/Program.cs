@@ -87,7 +87,7 @@ namespace Battleship.Ascii
                 position = GetRandomPosition();
                 GameController.CheckIsHit(myFleet, position, _bus);
                 Console.WriteLine();
-                Console.WriteLine("Computer shot in {0}{1} and {2}", position.Column, position.Row, isHit ? "has hit your ship !" : "miss");
+                Console.WriteLine("Computer shot in {0}{1}", position.Column, position.Row);
                 if (isHit)
                 {
                     ShowHit(badThing, "Oh no! You've been hit!");
