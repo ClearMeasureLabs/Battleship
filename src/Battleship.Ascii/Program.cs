@@ -39,8 +39,10 @@ namespace Battleship.Ascii
             Console.WriteLine(@" \_________________________________________________________________________|");
             Console.WriteLine();
 
+            Console.WriteLine("***************Initializing the game************");
             InitializeGame();
 
+            Console.WriteLine("***************Get ready to play!************");
             StartGame();
         }
 
@@ -50,16 +52,12 @@ namespace Battleship.Ascii
             var badThing = ConsoleColor.Red;
             var minorBad = ConsoleColor.DarkYellow;
             ShowCannon();
-            /*
-             Command List:
-             Q- quit
-             PositionInput - fire
-             */
             do
             {
+                Console.WriteLine("*****************************************");
                 Console.WriteLine();
                 Console.WriteLine("Player, it's your turn.");
-                Console.WriteLine("Enter coordinates for your shot (A1-H8), 'Q' to Quit:");
+                Console.WriteLine("Enter coordinates for your shot (A1-H8), 'S' to Surrender:");
                 var input = Console.ReadLine();
                 switch (input?.ToUpper())
                 {
@@ -74,6 +72,7 @@ namespace Battleship.Ascii
                 if (isHit)
                 {
                     ShowHit(goodThing, "Yeah ! Nice hit !");
+                    //HACK: Remove this after the demo
                     if (input == "C6")
                     {
                         Console.WriteLine("***************You sank the Patrol Boat!************");
@@ -86,9 +85,11 @@ namespace Battleship.Ascii
                     Console.WriteLine("Miss");
                     Console.ForegroundColor = color;
                 }
+                Console.WriteLine("*****************************************");
+                Console.WriteLine("It's the computer's turn.");
 
                 position = GetRandomPosition();
-                GameController.CheckIsHit(myFleet, position, _bus);
+                isHit = GameController.CheckIsHit(myFleet, position, _bus);
                 Console.WriteLine();
                 Console.WriteLine("Computer shot in {0}{1}", position.Column, position.Row);
                 if (isHit)
