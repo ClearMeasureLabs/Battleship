@@ -40,8 +40,10 @@ namespace Battleship.Ascii
             Console.WriteLine(@" \_________________________________________________________________________|");
             Console.WriteLine();
 
+            Console.WriteLine("***************Initializing the game************");
             InitializeGame();
 
+            Console.WriteLine("***************Get ready to play!************");
             StartGame();
         }
 
@@ -51,13 +53,9 @@ namespace Battleship.Ascii
             var badThing = ConsoleColor.Red;
             var minorBad = ConsoleColor.DarkYellow;
             ShowCannon();
-            /*
-             Command List:
-             Q- quit
-             PositionInput - fire
-             */
             do
             {
+                Console.WriteLine("*****************************************");
                 Console.WriteLine();
                 Console.WriteLine("Player, it's your turn.");
                 Console.WriteLine("Enter coordinates for your shot (A1-H8), 'S' to Surrender:");
@@ -88,6 +86,8 @@ namespace Battleship.Ascii
                     Console.WriteLine("Miss");
                     Console.ForegroundColor = color;
                 }
+                Console.WriteLine("*****************************************");
+                Console.WriteLine("It's the computer's turn.");
 
                 position = GetRandomPosition();
                 GameController.CheckIsHit(myFleet, position, _bus);
