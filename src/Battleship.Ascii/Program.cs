@@ -60,11 +60,16 @@ namespace Battleship.Ascii
                 Console.WriteLine();
                 Console.WriteLine("Player, it's your turn");
                 Console.WriteLine("Enter coordinates for your shot :");
-                var position = ParsePosition(Console.ReadLine());
+                var input = Console.ReadLine();
+                var position = ParsePosition(input);
                 var isHit = GameController.CheckIsHit(enemyFleet, position, _bus);
                 if (isHit)
                 {
                     ShowHit(goodThing, "Yeah ! Nice hit !");
+                    if (input == "C6")
+                    {
+                        Console.WriteLine("Patrol Boat was sunk!");
+                    }
                 }
                 else
                 {
