@@ -1,8 +1,5 @@
 ﻿namespace Battleship.GameController.Contracts
 {
-    /// <summary>
-    /// Letters for the column
-    /// </summary>
     public enum Letters
     {
         A,

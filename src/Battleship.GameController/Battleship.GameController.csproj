@@ -45,12 +45,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bus.cs" />
+    <Compile Include="Commands\InitializeMyFleetCommand.cs" />
     <Compile Include="Contracts\Position.cs" />
     <Compile Include="Contracts\Letters.cs" />
     <Compile Include="Contracts\Ship.cs" />
     <Compile Include="GameController.cs" />
+    <Compile Include="Handlers\InitializeMyFleetHandler.cs" />
+    <Compile Include="IRequest.cs" />
+    <Compile Include="IRequestHandler.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Events\" />
+    <Folder Include="Model\" />
+    <Folder Include="Queries\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

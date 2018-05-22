@@ -1,95 +1,52 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Media;
 using Battleship.GameController.Annotations;
 
 namespace Battleship.GameController.Contracts
 {
-    using System;
-    using System.Collections.Generic;
-
-    /// <summary>
-    /// The ship.
-    /// </summary>
-    public class Ship: INotifyPropertyChanged
+    public class Ship : INotifyPropertyChanged
     {
-        private bool isPlaced;
+        private bool _isPlaced;
+        public string Name { get; set; }
+        public List<Position> Positions { get; set; }
+        public Color Color { get; set; }
+        public int Size { get; set; }
 
-        #region Constructors and Destructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Ship"/> class.
-        /// </summary>
         public Ship()
         {
             Positions = new List<Position>();
         }
 
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets or sets the name.
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets the positions.
-        /// </summary>
-        public List<Position> Positions { get; set; }
-
-        /// <summary>
-        /// The color of the ship
-        /// </summary>
-        public Color Color { get; set; }
-
-        /// <summary>
-        /// Gets or sets the size.
-        /// </summary>
-        public int Size { get; set; }
-
-        #endregion
-
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// The add position.
-        /// </summary>
-        /// <param name="input">
-        /// The input.
-        /// </param>
-        public void AddPosition(string input)
-        {
-            if (Positions == null)
-            {
-                Positions = new List<Position>();
-            }
-
-            var letter = (Letters)Enum.Parse(typeof(Letters), input.ToUpper().Substring(0, 1));
-            var number = int.Parse(input.Substring(1, 1));
-            Positions.Add(new Position { Column = letter, Row = number });
-        }
-
         public bool IsPlaced
         {
-            get { return isPlaced; }
+            get => _isPlaced;
             set
             {
-                if (value.Equals(isPlaced)) return;
-                isPlaced = value;
+                if (value.Equals(_isPlaced)) return;
+                _isPlaced = value;
                 OnPropertyChanged();
             }
         }
 
-        #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public void AddPosition(string input)
+        {
+            if (Positions == null) Positions = new List<Position>();
+
+            var letter = (Letters) Enum.Parse(typeof(Letters), input.ToUpper().Substring(0, 1));
+            var number = int.Parse(input.Substring(1, 1));
+            Positions.Add(new Position {Column = letter, Row = number});
+        }
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
+            var handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
