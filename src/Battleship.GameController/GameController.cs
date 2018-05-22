@@ -40,6 +40,7 @@ namespace Battleship.GameController
             _bus.Send(new ShowCannonCommand());
             do
             {
+                _bus.SendEvent(new GameAnnouncementEvent("*************************************************"));
                 _bus.Send(new UserMessageCommand("Player, it's your turn."));
                 var input = _bus.Send(new UserPromptQuery("Enter coordinates for your shot (A1-H8), 'S' to Surrender:"));
                 switch (input?.ToUpper())
@@ -61,7 +62,7 @@ namespace Battleship.GameController
                     _bus.Send(new ShowMissCommand(minorBad, "Miss"));
                 }
 
-                _bus.SendEvent(new GameAnnouncementEvent(""));
+                _bus.SendEvent(new GameAnnouncementEvent("*************************************************"));
                 _bus.SendEvent(new GameAnnouncementEvent("It's the computer's turn."));
 
                 position = GetRandomPosition();
@@ -92,8 +93,9 @@ namespace Battleship.GameController
 
         private void InitializeGame()
         {
+            _bus.SendEvent(new GameAnnouncementEvent("*************************************************"));
             InitializeMyFleet();
-
+            _bus.SendEvent(new GameAnnouncementEvent("*************************************************"));
             InitializeEnemyFleet();
         }
 
