@@ -67,7 +67,7 @@ namespace Battleship.GameController
 
                 position = GetRandomPosition();
                 isHit = CheckIsHit(_myFleet, position, _bus);
-                _bus.Send(new UserMessageCommand($"Computer shot in {position.Column}{position.Row}"));
+                _bus.Send(new UserMessageCommand($"Computer shot in {position.Coordinate.Column}{position.Coordinate.Row}"));
                 _bus.Send(new UserMessageCommand(""));
                 if (isHit)
                 {
@@ -120,29 +120,33 @@ namespace Battleship.GameController
         {
             _enemyFleet = Ship.GetNewFleet();
             var fleetList = _enemyFleet.ToList();
-            var carrier = fleetList[0];
 
-            fleetList[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 4});
-            fleetList[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 5});
-            fleetList[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 6});
-            fleetList[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 7});
-            fleetList[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 8});
+            Ship carrier = fleetList.Single(s=>s.Name.Equals(Ship.AircraftCarrier));
+            fleetList[0].Positions.Add(new Position(Letters.B, 4, carrier));
+            fleetList[0].Positions.Add(new Position(Letters.B, 5, carrier));
+            fleetList[0].Positions.Add(new Position(Letters.B, 6, carrier));
+            fleetList[0].Positions.Add(new Position(Letters.B, 7, carrier));
+            fleetList[0].Positions.Add(new Position(Letters.B, 8, carrier));
 
-            fleetList[1].Positions.Add(new Position {Column = Letters.E, Row = 6});
-            fleetList[1].Positions.Add(new Position {Column = Letters.E, Row = 7});
-            fleetList[1].Positions.Add(new Position {Column = Letters.E, Row = 8});
-            fleetList[1].Positions.Add(new Position {Column = Letters.E, Row = 9});
+            Ship battleship = fleetList.Single(s => s.Name.Equals(Ship.Battleship));
+            fleetList[1].Positions.Add(new Position(Letters.E, 6, battleship));
+            fleetList[1].Positions.Add(new Position(Letters.E, 7, battleship));
+            fleetList[1].Positions.Add(new Position(Letters.E, 8, battleship));
+            fleetList[1].Positions.Add(new Position(Letters.E, 9, battleship));
 
-            fleetList[2].Positions.Add(new Position {Column = Letters.A, Row = 3});
-            fleetList[2].Positions.Add(new Position {Column = Letters.B, Row = 3});
-            fleetList[2].Positions.Add(new Position {Column = Letters.C, Row = 3});
+            Ship destroyer = fleetList.Single(s => s.Name.Equals(Ship.Destroyer));
+            fleetList[2].Positions.Add(new Position(Letters.A, 3, destroyer));
+            fleetList[2].Positions.Add(new Position(Letters.B, 3, destroyer));
+            fleetList[2].Positions.Add(new Position(Letters.C, 3, destroyer));
 
-            fleetList[3].Positions.Add(new Position {Column = Letters.F, Row = 8});
-            fleetList[3].Positions.Add(new Position {Column = Letters.G, Row = 8});
-            fleetList[3].Positions.Add(new Position {Column = Letters.H, Row = 8});
+            Ship submarine = fleetList.Single(s => s.Name.Equals(Ship.Submarine));
+            fleetList[3].Positions.Add(new Position(Letters.F, 8, submarine));
+            fleetList[3].Positions.Add(new Position(Letters.G, 8, submarine));
+            fleetList[3].Positions.Add(new Position(Letters.H, 8, submarine));
 
-            fleetList[4].Positions.Add(new Position {Column = Letters.C, Row = 5});
-            fleetList[4].Positions.Add(new Position {Column = Letters.C, Row = 6});
+            Ship patrolBoat = fleetList.Single(s => s.Name.Equals(Ship.Submarine));
+            fleetList[4].Positions.Add(new Position(Letters.C, 5, patrolBoat));
+            fleetList[4].Positions.Add(new Position(Letters.C, 6, patrolBoat));
         }
 
         public bool CheckIsHit(IEnumerable<Ship> ships, Position shotPosition, Bus bus)

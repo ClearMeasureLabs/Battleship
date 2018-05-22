@@ -44,12 +44,18 @@ namespace Battleship.GameController.Contracts
         {
             return new List<Ship>
             {
-                new Ship {Name = "Aircraft Carrier", Size = 5, Color = Colors.CadetBlue},
-                new Ship {Name = "Battleship", Size = 4, Color = Colors.Red},
-                new Ship {Name = "Submarine", Size = 3, Color = Colors.Chartreuse},
-                new Ship {Name = "Destroyer", Size = 3, Color = Colors.Yellow},
-                new Ship {Name = "Patrol Boat", Size = 2, Color = Colors.Orange}
+                new Ship {Name = AircraftCarrier, Size = 5, Color = Colors.CadetBlue},
+                new Ship {Name = Battleship, Size = 4, Color = Colors.Red},
+                new Ship {Name = Submarine, Size = 3, Color = Colors.Chartreuse},
+                new Ship {Name = Destroyer, Size = 3, Color = Colors.Yellow},
+                new Ship {Name = PatrolBoat, Size = 2, Color = Colors.Orange}
             };
         }
+
+        public const string AircraftCarrier = "Aircraft Carrier";
+        public const string Battleship = "Battleship";
+        public const string Submarine = "Submarine";
+        public const string Destroyer = "Destroyer";
+        public const string PatrolBoat = "Patrol Boat";
     }
 }

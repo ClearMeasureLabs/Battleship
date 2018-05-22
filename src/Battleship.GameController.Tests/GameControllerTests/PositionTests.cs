@@ -11,8 +11,8 @@ namespace Battleship.GameController.Tests.GameControllerTests
         public void ShouldParsePositionCode()
         {
             var position = new Position("A3");
-            position.Column.ShouldBe(Letters.A);
-            position.Row.ShouldBe(3);
+            position.Coordinate.Column.ShouldBe(Letters.A);
+            position.Coordinate.Row.ShouldBe(3);
         }
     }
 }

@@ -1,18 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Battleship.GameController.Contracts
 {
-    public class Position
+    public class Position : IEquatable<Position>
     {
-        public Letters Column { get; set; }
-        public int Row { get; set; }
+        public Coordinate Coordinate;
         public PositionStatus Status { get; set; }
         public Ship ShipAtThisPosition { get; set; }
 
-        public Position(Letters column, int row)
+        public Position(Letters column, int row, Ship shipAtThisPosition) : this(column, row)
         {
-            Column = column;
-            Row = row;
+            ShipAtThisPosition = shipAtThisPosition;
+        }
+        public Position(Letters column, int row) : this()
+        {
+            Coordinate = new Coordinate(column, row);
         }
 
         public Position()
@@ -22,29 +25,35 @@ namespace Battleship.GameController.Contracts
 
         public Position(string positionCode) : this()
         {
-            Column = (Letters)Enum.Parse(typeof(Letters), positionCode.ToUpper().Substring(0, 1));
-            Row = int.Parse(positionCode.Substring(1, 1));
+            var column = (Letters)Enum.Parse(typeof(Letters), positionCode.ToUpper().Substring(0, 1));
+            var row = int.Parse(positionCode.Substring(1, 1));
+            Coordinate = new Coordinate(column, row);
         }
 
         public override bool Equals(object obj)
         {
-            var position = obj as Position;
-            if (position == null) return false;
-
-            return position.Column == Column && position.Row == Row;
+            return Equals(obj as Position);
         }
 
         public bool Equals(Position other)
         {
-            return Column == other.Column && Row == other.Row;
+            return other != null &&
+                   EqualityComparer<Coordinate>.Default.Equals(Coordinate, other.Coordinate);
         }
 
         public override int GetHashCode()
         {
-            unchecked
-            {
-                return ((int) Column * 397) ^ Row;
-            }
+            return -1638168797 + EqualityComparer<Coordinate>.Default.GetHashCode(Coordinate);
+        }
+
+        public static bool operator ==(Position position1, Position position2)
+        {
+            return EqualityComparer<Position>.Default.Equals(position1, position2);
+        }
+
+        public static bool operator !=(Position position1, Position position2)
+        {
+            return !(position1 == position2);
         }
     }
 }
