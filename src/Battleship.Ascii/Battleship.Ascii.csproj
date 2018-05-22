@@ -51,10 +51,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameAnnouncementHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShipHitHandler.cs" />
+    <Compile Include="ShowCannonHandler.cs" />
+    <Compile Include="ShowMissHandler.cs" />
+    <Compile Include="ShowHitHandler.cs" />
     <Compile Include="StructureMapRegistry.cs" />
+    <Compile Include="UserMessageHandler.cs" />
+    <Compile Include="UserPromptHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

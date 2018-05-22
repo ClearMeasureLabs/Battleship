@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
+using Battleship.GameController.Commands;
 using Battleship.GameController.Contracts;
 using Battleship.GameController.Events;
+using Battleship.GameController.Queries;
 
 namespace Battleship.GameController
 {
     public class GameController
     {
-        private static List<Ship> _myFleet;
-
-        private static List<Ship> _enemyFleet;
+        private Game _game;
+        private List<Ship> _myFleet;
+        private List<Ship> _enemyFleet;
         private readonly Bus _bus;
 
         public GameController(Bus bus)
@@ -21,11 +23,12 @@ namespace Battleship.GameController
 
         public void Run()
         {
+            _game = new Game();
             _bus.SendEvent(new GameStartedEvent());
-            Console.WriteLine("***************Initializing the game************");
+            _bus.SendEvent(new GameAnnouncementEvent("Initializing the game"));
             InitializeGame();
 
-            Console.WriteLine("***************Get ready to play!************");
+            _bus.SendEvent(new GameAnnouncementEvent("Get ready to play!"));
             StartGame();
         }
 
@@ -34,17 +37,14 @@ namespace Battleship.GameController
             var goodThing = ConsoleColor.Green;
             var badThing = ConsoleColor.Red;
             var minorBad = ConsoleColor.DarkYellow;
-            ShowCannon();
+            _bus.Send(new ShowCannonCommand());
             do
             {
-                Console.WriteLine("*****************************************");
-                Console.WriteLine();
-                Console.WriteLine("Player, it's your turn.");
-                Console.WriteLine("Enter coordinates for your shot (A1-H8), 'S' to Surrender:");
-                var input = Console.ReadLine();
+                _bus.Send(new UserMessageCommand("Player, it's your turn."));
+                var input = _bus.Send(new UserPromptQuery("Enter coordinates for your shot (A1-H8), 'S' to Surrender:"));
                 switch (input?.ToUpper())
                 {
-                    case "Q":
+                    case "S":
                         return;
                     default:
                         break;
@@ -54,35 +54,27 @@ namespace Battleship.GameController
                 var isHit = CheckIsHit(_enemyFleet, position, _bus);
                 if (isHit)
                 {
-                    ShowHit(goodThing, "Yeah ! Nice hit !");
-                    //HACK: Remove this after the demo
-                    if (input == "C6") Console.WriteLine("***************You sank the Patrol Boat!************");
+                    _bus.Send(new ShowHitCommand(goodThing, "Yeah! Nice hit!"));
                 }
                 else
                 {
-                    var color = Console.ForegroundColor;
-                    Console.ForegroundColor = minorBad;
-                    Console.WriteLine("Miss");
-                    Console.ForegroundColor = color;
+                    _bus.Send(new ShowMissCommand(minorBad, "Miss"));
                 }
 
-                Console.WriteLine("*****************************************");
-                Console.WriteLine("It's the computer's turn.");
+                _bus.SendEvent(new GameAnnouncementEvent(""));
+                _bus.SendEvent(new GameAnnouncementEvent("It's the computer's turn."));
 
                 position = GetRandomPosition();
                 isHit = CheckIsHit(_myFleet, position, _bus);
-                Console.WriteLine();
-                Console.WriteLine("Computer shot in {0}{1}", position.Column, position.Row);
+                _bus.Send(new UserMessageCommand($"Computer shot in {position.Column}{position.Row}"));
+                _bus.Send(new UserMessageCommand(""));
                 if (isHit)
                 {
-                    ShowHit(badThing, "Oh no! You've been hit!");
+                    _bus.Send(new ShowHitCommand(badThing, "Oh no! You've been hit!"));
                 }
                 else
                 {
-                    var color = Console.ForegroundColor;
-                    Console.ForegroundColor = goodThing;
-                    Console.WriteLine("Miss");
-                    Console.ForegroundColor = color;
+                    _bus.Send(new ShowMissCommand(goodThing, "Miss"));
                 }
             } while (true);
         }
@@ -108,18 +100,16 @@ namespace Battleship.GameController
         private void InitializeMyFleet()
         {
             _myFleet = InitializeShips().ToList();
-
-            Console.WriteLine("Please position your fleet (Game board size is from A to H and 1 to 8) :");
+            _bus.Send(new UserMessageCommand("Please position your fleet (Game board size is from A to H and 1 to 8) :"));
 
             foreach (var ship in _myFleet)
             {
-                Console.WriteLine("*****************************************");
-                Console.WriteLine();
-                Console.WriteLine("Please enter the positions for the {0} (size: {1})", ship.Name, ship.Size);
+                _bus.SendEvent(new GameAnnouncementEvent(""));
+                _bus.Send(new UserMessageCommand($"Please enter the positions for the {ship.Name} (size: {ship.Size})"));
                 for (var i = 1; i <= ship.Size; i++)
                 {
-                    Console.WriteLine("Enter position {0} of {1} (i.e A3):", i, ship.Size);
-                    ship.AddPosition(Console.ReadLine());
+                    var input = _bus.Send(new UserPromptQuery($"Enter position {i} of {ship.Size} (i.e A3):"));
+                    ship.AddPosition(input);
                 }
             }
         }
@@ -195,38 +185,6 @@ namespace Battleship.GameController
             var number = random.Next(size);
             var position = new Position(letter, number);
             return position;
-        }
-
-        private void ShowHit(ConsoleColor color, string message)
-        {
-            Console.Beep();
-            var origColor = Console.ForegroundColor;
-            Console.ForegroundColor = color;
-            Console.WriteLine(@"                \         .  ./");
-            Console.WriteLine(@"              \      .:"";'.:..""   /");
-            Console.WriteLine(@"                  (M^^.^~~:.'"").");
-            Console.WriteLine(@"            -   (/  .    . . \ \)  -");
-            Console.WriteLine(@"               ((| :. ~ ^  :. .|))");
-            Console.WriteLine(@"            -   (\- |  \ /  |  /)  -");
-            Console.WriteLine(@"                 -\  \     /  /-");
-            Console.WriteLine(@"                   \  \   /  /");
-            Console.WriteLine(message);
-            Console.ForegroundColor = origColor;
-        }
-
-        private void ShowCannon()
-        {
-            Console.Clear();
-            Console.WriteLine("                  __");
-            Console.WriteLine(@"                 /  \");
-            Console.WriteLine("           .-.  |    |");
-            Console.WriteLine(@"   *    _.-'  \  \__/");
-            Console.WriteLine(@"    \.-'       \");
-            Console.WriteLine("   /          _/");
-            Console.WriteLine(@"  |      _  /""");
-            Console.WriteLine(@"  |     /_\'");
-            Console.WriteLine(@"   \    \_/");
-            Console.WriteLine(@"    """"""""");
         }
 
         public static Position ParsePosition(string input)
