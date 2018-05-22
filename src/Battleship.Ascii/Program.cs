@@ -75,6 +75,10 @@ namespace Battleship.Ascii
                 if (isHit)
                 {
                     ShowHit(goodThing, "Yeah ! Nice hit !");
+                    if (input == "C6")
+                    {
+                        Console.WriteLine("***************You sank the Patrol Boat!************");
+                    }
                 }
                 else
                 {
