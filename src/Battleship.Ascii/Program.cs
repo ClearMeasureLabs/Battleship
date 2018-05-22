@@ -60,7 +60,7 @@ namespace Battleship.Ascii
             {
                 Console.WriteLine();
                 Console.WriteLine("Player, it's your turn.");
-                Console.WriteLine("Enter coordinates for your shot (A1-H8), 'Q' to Quit:");
+                Console.WriteLine("Enter coordinates for your shot (A1-H8), 'S' to Surrender:");
                 var input = Console.ReadLine();
                 switch (input?.ToUpper())
                 {
@@ -75,6 +75,7 @@ namespace Battleship.Ascii
                 if (isHit)
                 {
                     ShowHit(goodThing, "Yeah ! Nice hit !");
+                    //HACK: Remove this after the demo
                     if (input == "C6")
                     {
                         Console.WriteLine("***************You sank the Patrol Boat!************");
