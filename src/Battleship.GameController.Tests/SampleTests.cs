@@ -25,6 +25,7 @@ namespace Battleship.GameController.Tests
         [TestCase(-5,7,2)]
         [TestCase(-5,-7,-12)]
         [TestCase(5,-7,-2)]
+        [TestCase(0,0,0)]
         public void ThisIsADataDrivenTest(int addend1, int addend2, int result)
         {
             Assert.AreEqual(result,Add(addend1,addend2));
