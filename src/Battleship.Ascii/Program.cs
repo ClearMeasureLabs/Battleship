@@ -1,4 +1,7 @@
 ﻿
+using Battleship.GameController.Commands;
+using StructureMap;
+
 namespace Battleship.Ascii
 {
    using System;
@@ -13,10 +16,15 @@ namespace Battleship.Ascii
       private static List<Ship> myFleet;
 
       private static List<Ship> enemyFleet;
+       private static Container iocContainer;
+       private static Bus _bus;
 
       static void Main()
       {
-         Console.WriteLine("                                     |__");
+          iocContainer = new Container(new StructureMapRegistry());
+          _bus = iocContainer.GetInstance<Bus>();
+
+          Console.WriteLine("                                     |__");
          Console.WriteLine(@"                                     |\/");
          Console.WriteLine("                                     ---");
          Console.WriteLine("                                     / | [");
@@ -122,20 +130,7 @@ namespace Battleship.Ascii
 
       private static void InitializeMyFleet()
       {
-         myFleet = GameController.InitializeShips().ToList();
-
-         Console.WriteLine("Please position your fleet (Game board size is from A to H and 1 to 8) :");
-
-         foreach (var ship in myFleet)
-         {
-            Console.WriteLine();
-            Console.WriteLine("Please enter the positions for the {0} (size: {1})", ship.Name, ship.Size);
-            for (var i = 1; i <= ship.Size; i++)
-            {
-               Console.WriteLine("Enter position {0} of {1} (i.e A3):", i, ship.Size);
-               ship.AddPosition(Console.ReadLine());
-            }
-         }
+         myFleet =  _bus.Send(new InitializeMyFleetCommand());
       }
 
       private static void InitializeEnemyFleet()
