@@ -12,8 +12,8 @@ namespace Battleship.GameController
     public class GameController
     {
         private Game _game;
-        private List<Ship> _myFleet;
-        private List<Ship> _enemyFleet;
+        private IEnumerable<Ship> _myFleet;
+        private IEnumerable<Ship> _enemyFleet;
         private readonly Bus _bus;
 
         public GameController(Bus bus)
@@ -99,7 +99,7 @@ namespace Battleship.GameController
 
         private void InitializeMyFleet()
         {
-            _myFleet = InitializeShips().ToList();
+            _myFleet = Ship.GetNewFleet();
             _bus.Send(new UserMessageCommand("Please position your fleet (Game board size is from A to H and 1 to 8) :"));
 
             foreach (var ship in _myFleet)
@@ -116,30 +116,31 @@ namespace Battleship.GameController
 
         private void InitializeEnemyFleet()
         {
-            _enemyFleet = InitializeShips().ToList();
-            var carrier = _enemyFleet[0];
+            _enemyFleet = Ship.GetNewFleet();
+            var fleetList = _enemyFleet.ToList();
+            var carrier = fleetList[0];
 
-            _enemyFleet[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 4});
-            _enemyFleet[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 5});
-            _enemyFleet[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 6});
-            _enemyFleet[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 7});
-            _enemyFleet[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 8});
+            fleetList[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 4});
+            fleetList[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 5});
+            fleetList[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 6});
+            fleetList[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 7});
+            fleetList[0].Positions.Add(new Position {ShipAtThisPosition = carrier, Column = Letters.B, Row = 8});
 
-            _enemyFleet[1].Positions.Add(new Position {Column = Letters.E, Row = 6});
-            _enemyFleet[1].Positions.Add(new Position {Column = Letters.E, Row = 7});
-            _enemyFleet[1].Positions.Add(new Position {Column = Letters.E, Row = 8});
-            _enemyFleet[1].Positions.Add(new Position {Column = Letters.E, Row = 9});
+            fleetList[1].Positions.Add(new Position {Column = Letters.E, Row = 6});
+            fleetList[1].Positions.Add(new Position {Column = Letters.E, Row = 7});
+            fleetList[1].Positions.Add(new Position {Column = Letters.E, Row = 8});
+            fleetList[1].Positions.Add(new Position {Column = Letters.E, Row = 9});
 
-            _enemyFleet[2].Positions.Add(new Position {Column = Letters.A, Row = 3});
-            _enemyFleet[2].Positions.Add(new Position {Column = Letters.B, Row = 3});
-            _enemyFleet[2].Positions.Add(new Position {Column = Letters.C, Row = 3});
+            fleetList[2].Positions.Add(new Position {Column = Letters.A, Row = 3});
+            fleetList[2].Positions.Add(new Position {Column = Letters.B, Row = 3});
+            fleetList[2].Positions.Add(new Position {Column = Letters.C, Row = 3});
 
-            _enemyFleet[3].Positions.Add(new Position {Column = Letters.F, Row = 8});
-            _enemyFleet[3].Positions.Add(new Position {Column = Letters.G, Row = 8});
-            _enemyFleet[3].Positions.Add(new Position {Column = Letters.H, Row = 8});
+            fleetList[3].Positions.Add(new Position {Column = Letters.F, Row = 8});
+            fleetList[3].Positions.Add(new Position {Column = Letters.G, Row = 8});
+            fleetList[3].Positions.Add(new Position {Column = Letters.H, Row = 8});
 
-            _enemyFleet[4].Positions.Add(new Position {Column = Letters.C, Row = 5});
-            _enemyFleet[4].Positions.Add(new Position {Column = Letters.C, Row = 6});
+            fleetList[4].Positions.Add(new Position {Column = Letters.C, Row = 5});
+            fleetList[4].Positions.Add(new Position {Column = Letters.C, Row = 6});
         }
 
         public bool CheckIsHit(IEnumerable<Ship> ships, Position shotPosition, Bus bus)
@@ -159,18 +160,6 @@ namespace Battleship.GameController
 
             shotPosition.Status = PositionStatus.Miss;
             return false;
-        }
-
-        public IEnumerable<Ship> InitializeShips()
-        {
-            return new List<Ship>
-            {
-                new Ship {Name = "Aircraft Carrier", Size = 5, Color = Colors.CadetBlue},
-                new Ship {Name = "Battleship", Size = 4, Color = Colors.Red},
-                new Ship {Name = "Submarine", Size = 3, Color = Colors.Chartreuse},
-                new Ship {Name = "Destroyer", Size = 3, Color = Colors.Yellow},
-                new Ship {Name = "Patrol Boat", Size = 2, Color = Colors.Orange}
-            };
         }
 
         public bool IsShipValid(Ship ship)

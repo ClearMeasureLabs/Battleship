@@ -16,7 +16,7 @@ namespace Battleship.GameController.Tests.GameControllerTests
         [Test]
         public void ShouldHitTheShip()
         {
-            var ships = new GameController(null).InitializeShips();
+            var ships = Ship.GetNewFleet();
 
             var counter = 0;
             foreach (var ship in ships)
@@ -40,7 +40,7 @@ namespace Battleship.GameController.Tests.GameControllerTests
         [Test]
         public void ShouldNotHitTheShip()
         {
-            var ships = new GameController(null).InitializeShips();
+            var ships = Ship.GetNewFleet();
 
             var counter = 0;
             foreach (var ship in ships)

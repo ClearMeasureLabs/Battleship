@@ -1,12 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Media;
-using Battleship.GameController.Annotations;
 
 namespace Battleship.GameController.Contracts
 {
-    public class Ship : INotifyPropertyChanged
+    public class Ship
     {
         private bool _isPlaced;
 
@@ -27,12 +24,8 @@ namespace Battleship.GameController.Contracts
             {
                 if (value.Equals(_isPlaced)) return;
                 _isPlaced = value;
-                OnPropertyChanged();
             }
         }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public void AddPosition(string positionCode)
         {
@@ -47,11 +40,16 @@ namespace Battleship.GameController.Contracts
             Positions.Add(position);
         }
 
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public static IEnumerable<Ship> GetNewFleet()
         {
-            var handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+            return new List<Ship>
+            {
+                new Ship {Name = "Aircraft Carrier", Size = 5, Color = Colors.CadetBlue},
+                new Ship {Name = "Battleship", Size = 4, Color = Colors.Red},
+                new Ship {Name = "Submarine", Size = 3, Color = Colors.Chartreuse},
+                new Ship {Name = "Destroyer", Size = 3, Color = Colors.Yellow},
+                new Ship {Name = "Patrol Boat", Size = 2, Color = Colors.Orange}
+            };
         }
     }
 }
