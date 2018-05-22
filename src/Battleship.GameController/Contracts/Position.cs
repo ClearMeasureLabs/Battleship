@@ -4,6 +4,8 @@
     {
         public Letters Column { get; set; }
         public int Row { get; set; }
+        public PositionStatus Status { get; set; }
+        public Ship ShipAtThisPosition { get; set; }
 
         public Position(Letters column, int row)
         {
