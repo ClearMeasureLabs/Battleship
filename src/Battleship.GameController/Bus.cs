@@ -7,8 +7,7 @@ namespace Battleship.GameController
 
     public class Bus
     {
-        private readonly SingleInstanceFactory _singleInstanceFactory
-            = type => Activator.CreateInstance(type);
+        private readonly SingleInstanceFactory _singleInstanceFactory;
 
         public Bus()
         {

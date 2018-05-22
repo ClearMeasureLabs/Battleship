@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Windows.Media;
 using Battleship.GameController.Contracts;
+using Battleship.GameController.Events;
 
 namespace Battleship.GameController
 {
     public class GameController
     {
-        public static bool CheckIsHit(IEnumerable<Ship> ships, Position shotPosition)
+        public static bool CheckIsHit(IEnumerable<Ship> ships, Position shotPosition, Bus bus)
         {
             if (ships == null) throw new ArgumentNullException("ships");
 
@@ -16,8 +17,13 @@ namespace Battleship.GameController
             foreach (var ship in ships)
             foreach (var position in ship.Positions)
                 if (position.Equals(shotPosition))
+                {
+                    position.Status = PositionStatus.Hit;
+                    bus?.Send(new ShipHitEvent(shotPosition));
                     return true;
-
+                }
+                    
+            shotPosition.Status = PositionStatus.Miss;
             return false;
         }
 

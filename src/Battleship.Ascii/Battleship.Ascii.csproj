@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShipHitHandler.cs" />
     <Compile Include="StructureMapRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
