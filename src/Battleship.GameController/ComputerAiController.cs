@@ -55,8 +55,8 @@ namespace Battleship.GameController
             var rows = board.Size;
             var lines = board.Size;
             var random = new Random();
-            var letter = (Letters)random.Next(lines);
-            var number = random.Next(rows);
+            var letter = (Letters)random.Next(1, lines);
+            var number = random.Next(1, rows);
             var coordinate = new Coordinate(letter, number);
             return coordinate;
         }

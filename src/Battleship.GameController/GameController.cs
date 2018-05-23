@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Mime;
 using System.Windows.Media;
@@ -14,6 +15,8 @@ namespace Battleship.GameController
         private Game _game;
         private readonly Bus _bus;
         private readonly ComputerAiController _computerAiController;
+        private List<Coordinate> _computersAttempts = new List<Coordinate>();
+
         private Coordinate _computerToFireAt;
         public GameController(Bus bus)
         {
@@ -60,7 +63,7 @@ namespace Battleship.GameController
 
         private void InitializeMyFleet()
         {
-            _bus.Send(new UserMessageCommand("Please position your fleet (Game board size is from A to H and 1 to 8) :"));
+            _bus.Send(new UserMessageCommand("Please position your fleet (Game board size is from A to J and 1 to 10) :"));
 
             foreach (var ship in _game.PlayerBoard.Fleet)
             {
@@ -77,7 +80,7 @@ namespace Battleship.GameController
 
         private bool ExecutePlayerTurn()
         {
-            var input = _bus.Send(new UserPromptQuery("Enter coordinates for your shot (A1-H8), 'S' to Surrender:"));
+            var input = _bus.Send(new UserPromptQuery("Enter coordinates for your shot (A1-J10), 'S' to Surrender:"));
             if (input.Length == 1)
             {
                 switch (input?.ToUpper())
@@ -117,10 +120,22 @@ namespace Battleship.GameController
 
         private void ExecuteComputerTurn()
         {
-            Coordinate coordinate;
+            Coordinate coordinate = null;
             if (_computerToFireAt == null)
             {
-                coordinate = _computerAiController.ChooseRandomCoordinate(_game.PlayerBoard);
+                while (coordinate == null)
+                {
+                    var theTry = _computerAiController.ChooseRandomCoordinate(_game.PlayerBoard);
+                    if (!_computersAttempts.Contains(theTry))
+                    {
+                        coordinate = theTry;
+                    }
+                    _computersAttempts.Add(theTry);
+                    foreach (var attempt in _computersAttempts)
+                    {
+                        Debug.WriteLine(attempt);
+                    }
+                }
             }
             else
             {
