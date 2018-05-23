@@ -9,7 +9,7 @@ namespace Battleship.Ascii
     {
         public EventAck Handle(ShowCannonCommand request)
         {
-            Console.Clear();
+//            Console.Clear();
             Console.WriteLine(@"\-------\                                  ");
             Console.WriteLine(@" \       \                             \   ");
             Console.WriteLine(@"  \_______\_____________________________\  ");
