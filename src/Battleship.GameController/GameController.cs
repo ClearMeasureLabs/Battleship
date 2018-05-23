@@ -62,7 +62,7 @@ namespace Battleship.GameController
 
         private void InitializeMyFleet()
         {
-            _bus.Send(new UserMessageCommand("Please position your fleet (Game board size is from A to H and 1 to 8) :"));
+            _bus.Send(new UserMessageCommand("Please position your fleet (Game board size is from A to J and 1 to 10) :"));
 
             foreach (var ship in _game.PlayerBoard.Fleet)
             {
