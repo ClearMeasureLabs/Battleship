@@ -1,0 +1,57 @@
+#nunitReport{
+font-family: Arial, Helvetica, sans-serif;
+min-width: 200px;
+max-width: 200px;
+width: 200px;
+position: fixed;
+right: 3px;
+bottom: 168px;
+/*border:1px solid gray;*/
+}
+#nunitSummary{
+	height: 20px;
+	max-height: 20px;
+	min-height: 20px;
+	border:1px ridge #808080 ;
+	padding: 4px 0 0 4px;
+	/*font-weight: bolder;*/
+	font-size: small;
+}
+#nunitDetail{
+	max-height: 200px;
+	min-height: 0px;
+	overflow-y: scroll;
+	border:1px inset #808080 ;
+	border-top: 0;
+	padding: 3px 0 0 3px;
+	resize: vertical;
+}
+.nunit-all-pass{
+	background-color: rgba(81, 182, 76, 0.75);
+	/*color: white;*/
+}
+.nunit-any-failed{
+	background-color: rgba(139, 45, 48, 0.75);
+}
+.nunit-single-test{
+	min-height: 18px;
+	font-size: smaller;
+	padding-left: 20px;
+	margin-left: 10px;
+}
+.nunit-single-test.failed{
+	background-image: url("../images/testerr.png");
+	background-repeat: no-repeat;
+}
+.nunit-single-test.passed{
+	background-image: url("../images/testok.png");
+	background-repeat: no-repeat;
+}
+.nunit-single-test.test-name{
+	margin-left: 0px;
+	background-image: url("../images/test.png");
+	background-repeat: no-repeat;
+}
+.nunit-hidden{
+	display:none;
+}

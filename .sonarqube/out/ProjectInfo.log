@@ -1,0 +1,28 @@
+Product projects
+---------------------------------------
+C:\working\spam-vsts\src\Battleship.GameController\Battleship.GameController.csproj
+C:\working\spam-vsts\src\Battleship.Ascii\Battleship.Ascii.csproj
+
+
+Test projects
+---------------------------------------
+C:\working\spam-vsts\src\Battleship.GameController.Tests\Battleship.GameController.Tests.csproj
+C:\working\spam-vsts\src\Battleship.Ascii.Tests\Battleship.Ascii.Tests.csproj
+C:\working\spam-vsts\src\Battleship.GameController.ATDD\Battleship.GameController.ATDD.csproj
+
+
+Invalid projects
+---------------------------------------
+{none}
+
+
+Skipped projects
+---------------------------------------
+{none}
+
+
+Excluded projects
+---------------------------------------
+{none}
+
+

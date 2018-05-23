@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<script src="../nunit.js"></script>
+<script>
+var name = "world";
+// Create a test object (test module)
+var test = new NUnit.Test("Test Hello world");
+// Every method on the test object is a test case. 
+test.myTest = function(assert){
+    assert.equals("hello world!", "hello " + name + "!");
+  };
+</script>
+<!-- nunit-browser.js contains script that looks for all the test objects and runs them with built-in test runner. -->
+<!-- It also has a mini reporter to show the results -->
+<script src="../nunit-browser.js"></script>
+</head>
+<body>
+<div>
+	<textarea rows="30" cols="100" id="appender" readonly="readonly">
+	</textarea>
+</div>
+</body>
+</html>

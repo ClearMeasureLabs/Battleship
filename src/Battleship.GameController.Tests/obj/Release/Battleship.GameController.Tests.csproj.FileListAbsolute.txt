@@ -1,0 +1,15 @@
+C:\working\spam-vsts\src\Battleship.GameController.Tests\bin\Release\Battleship.GameController.Tests.dll
+C:\working\spam-vsts\src\Battleship.GameController.Tests\bin\Release\Battleship.GameController.Tests.pdb
+C:\working\spam-vsts\src\Battleship.GameController.Tests\bin\Release\Battleship.GameController.Tests.dll.CodeAnalysisLog.xml
+C:\working\spam-vsts\src\Battleship.GameController.Tests\bin\Release\Battleship.GameController.Tests.dll.lastcodeanalysissucceeded
+C:\working\spam-vsts\src\Battleship.GameController.Tests\bin\Release\Battleship.GameController.dll
+C:\working\spam-vsts\src\Battleship.GameController.Tests\bin\Release\Battleship.GameController.pdb
+C:\working\spam-vsts\src\Battleship.GameController.Tests\obj\Release\Battleship.GameController.Tests.csproj.CoreCompileInputs.cache
+C:\working\spam-vsts\src\Battleship.GameController.Tests\obj\Release\Battleship.GameController.Tests.dll
+C:\working\spam-vsts\src\Battleship.GameController.Tests\obj\Release\Battleship.GameController.Tests.pdb
+C:\working\spam-vsts\src\Battleship.GameController.Tests\bin\Release\nunit.framework.dll
+C:\working\spam-vsts\src\Battleship.GameController.Tests\bin\Release\nunit.framework.pdb
+C:\working\spam-vsts\src\Battleship.GameController.Tests\bin\Release\nunit.framework.xml
+C:\working\spam-vsts\src\Battleship.GameController.Tests\obj\Release\Battleship.GameController.Tests.csprojAssemblyReference.cache
+C:\working\spam-vsts\src\Battleship.GameController.Tests\obj\Release\Battleship.GameController.Tests.csproj.CopyComplete
+C:\working\spam-vsts\src\Battleship.GameController.Tests\bin\Release\Shouldly.dll

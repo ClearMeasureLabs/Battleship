@@ -1,0 +1,17 @@
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Release\Battleship.Ascii.exe.config
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Release\Battleship.Ascii.exe
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Release\Battleship.Ascii.pdb
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Release\Battleship.Ascii.exe.CodeAnalysisLog.xml
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Release\Battleship.Ascii.exe.lastcodeanalysissucceeded
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Release\Battleship.GameController.dll
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Release\Battleship.GameController.pdb
+C:\working\spam-vsts\src\Battleship.Ascii\obj\Release\Battleship.Ascii.csproj.CoreCompileInputs.cache
+C:\working\spam-vsts\src\Battleship.Ascii\obj\Release\Battleship.Ascii.exe
+C:\working\spam-vsts\src\Battleship.Ascii\obj\Release\Battleship.Ascii.pdb
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Release\StructureMap.dll
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Release\StructureMap.Net4.dll
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Release\StructureMap.pdb
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Release\StructureMap.xml
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Release\StructureMap.Net4.pdb
+C:\working\spam-vsts\src\Battleship.Ascii\obj\Release\Battleship.Ascii.csprojAssemblyReference.cache
+C:\working\spam-vsts\src\Battleship.Ascii\obj\Release\Battleship.Ascii.csproj.CopyComplete

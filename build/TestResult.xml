@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\working\spam-vsts\build\test\Battleship.Ascii.Tests.dll" total="14" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2018-05-23" time="17:54:11">
+  <environment nunit-version="3.5.0.0" clr-version="4.0.30319.42000" os-version="Microsoft Windows NT 10.0.17134.0" platform="Win32NT" cwd="C:\working\spam-vsts" machine-name="DESKTOP-U6S7T4P" user="Owner" user-domain="DESKTOP-U6S7T4P" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\working\spam-vsts\build\test\Battleship.Ascii.Tests.dll" executed="True" result="Success" success="True" time="0.045" asserts="0">
+    <properties>
+      <property name="_PID" value="14296" />
+      <property name="_APPDOMAIN" value="domain-e2a6aaae-Battleship.Ascii.Tests.dll" />
+    </properties>
+    <results>
+      <test-suite type="TestSuite" name="Battleship" executed="True" result="Success" success="True" time="0.022" asserts="0">
+        <results>
+          <test-suite type="TestSuite" name="Ascii" executed="True" result="Success" success="True" time="0.020" asserts="0">
+            <results>
+              <test-suite type="TestSuite" name="Tests" executed="True" result="Success" success="True" time="0.020" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="ProgramTests" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                    <results>
+                      <test-case name="Battleship.Ascii.Tests.ProgramTests.ProgramStartsUp" executed="True" result="Success" success="True" time="0.005" asserts="0" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+  <test-suite type="Assembly" name="C:\working\spam-vsts\build\test\Battleship.GameController.Tests.dll" executed="True" result="Success" success="True" time="0.141" asserts="11">
+    <properties>
+      <property name="_PID" value="9740" />
+      <property name="_APPDOMAIN" value="domain-728a7275-Battleship.GameController.Tests.dll" />
+    </properties>
+    <results>
+      <test-suite type="TestSuite" name="Battleship" executed="True" result="Success" success="True" time="0.117" asserts="11">
+        <results>
+          <test-suite type="TestSuite" name="GameController" executed="True" result="Success" success="True" time="0.117" asserts="11">
+            <results>
+              <test-suite type="TestSuite" name="Tests" executed="True" result="Success" success="True" time="0.117" asserts="11">
+                <results>
+                  <test-suite type="TestSuite" name="GameControllerTests" executed="True" result="Success" success="True" time="0.087" asserts="4">
+                    <results>
+                      <test-suite type="TestFixture" name="BoardTests" executed="True" result="Success" success="True" time="0.063" asserts="2">
+                        <results>
+                          <test-case name="Battleship.GameController.Tests.GameControllerTests.BoardTests.ShouldHitTheShip" executed="True" result="Success" success="True" time="0.051" asserts="1" />
+                          <test-case name="Battleship.GameController.Tests.GameControllerTests.BoardTests.ShouldNotHitTheShip" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                        </results>
+                      </test-suite>
+                      <test-suite type="TestFixture" name="CoordinateTests" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                        <results>
+                          <test-case name="Battleship.GameController.Tests.GameControllerTests.CoordinateTests.ShouldConstructCoordinate" executed="True" result="Success" success="True" time="0.008" asserts="0" />
+                          <test-case name="Battleship.GameController.Tests.GameControllerTests.CoordinateTests.ShouldParseCoordinateCode" executed="True" result="Success" success="True" time="0.008" asserts="0" />
+                        </results>
+                      </test-suite>
+                      <test-suite type="TestFixture" name="IsShipValidTests" executed="True" result="Success" success="True" time="0.001" asserts="2">
+                        <results>
+                          <test-case name="Battleship.GameController.Tests.GameControllerTests.IsShipValidTests.ShipIsNotValid" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Battleship.GameController.Tests.GameControllerTests.IsShipValidTests.ShipIsValid" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="SampleTests" executed="True" result="Success" success="True" time="0.030" asserts="7">
+                    <results>
+                      <test-case name="Battleship.GameController.Tests.SampleTests.ShouldCheckForException" executed="True" result="Success" success="True" time="0.010" asserts="1" />
+                      <test-suite type="ParameterizedTest" name="ThisIsADataDrivenTest" executed="True" result="Success" success="True" time="0.019" asserts="5">
+                        <results>
+                          <test-case name="Battleship.GameController.Tests.SampleTests.ThisIsADataDrivenTest(5,7,12)" executed="True" result="Success" success="True" time="0.018" asserts="1" />
+                          <test-case name="Battleship.GameController.Tests.SampleTests.ThisIsADataDrivenTest(-5,7,2)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Battleship.GameController.Tests.SampleTests.ThisIsADataDrivenTest(-5,-7,-12)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Battleship.GameController.Tests.SampleTests.ThisIsADataDrivenTest(5,-7,-2)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Battleship.GameController.Tests.SampleTests.ThisIsADataDrivenTest(0,0,0)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                        </results>
+                      </test-suite>
+                      <test-case name="Battleship.GameController.Tests.SampleTests.ThisIsATest" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

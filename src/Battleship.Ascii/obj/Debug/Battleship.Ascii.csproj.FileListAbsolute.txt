@@ -1,0 +1,15 @@
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Debug\Battleship.Ascii.exe.config
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Debug\Battleship.Ascii.exe
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Debug\Battleship.Ascii.pdb
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Debug\Battleship.GameController.dll
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Debug\StructureMap.dll
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Debug\StructureMap.Net4.dll
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Debug\Battleship.GameController.pdb
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Debug\StructureMap.pdb
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Debug\StructureMap.xml
+C:\working\spam-vsts\src\Battleship.Ascii\bin\Debug\StructureMap.Net4.pdb
+C:\working\spam-vsts\src\Battleship.Ascii\obj\Debug\Battleship.Ascii.csprojAssemblyReference.cache
+C:\working\spam-vsts\src\Battleship.Ascii\obj\Debug\Battleship.Ascii.csproj.CoreCompileInputs.cache
+C:\working\spam-vsts\src\Battleship.Ascii\obj\Debug\Battleship.Ascii.csproj.CopyComplete
+C:\working\spam-vsts\src\Battleship.Ascii\obj\Debug\Battleship.Ascii.exe
+C:\working\spam-vsts\src\Battleship.Ascii\obj\Debug\Battleship.Ascii.pdb

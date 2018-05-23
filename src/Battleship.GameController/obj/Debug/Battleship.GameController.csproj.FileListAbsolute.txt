@@ -1,0 +1,6 @@
+C:\working\spam-vsts\src\Battleship.GameController\bin\Debug\Battleship.GameController.dll
+C:\working\spam-vsts\src\Battleship.GameController\bin\Debug\Battleship.GameController.pdb
+C:\working\spam-vsts\src\Battleship.GameController\obj\Debug\Battleship.GameController.csproj.CoreCompileInputs.cache
+C:\working\spam-vsts\src\Battleship.GameController\obj\Debug\Battleship.GameController.dll
+C:\working\spam-vsts\src\Battleship.GameController\obj\Debug\Battleship.GameController.pdb
+C:\working\spam-vsts\src\Battleship.GameController\obj\Debug\Battleship.GameController.csprojAssemblyReference.cache

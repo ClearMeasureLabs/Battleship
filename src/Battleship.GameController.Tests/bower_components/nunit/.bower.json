@@ -1,0 +1,15 @@
+{
+  "name": "nunit",
+  "homepage": "https://github.com/nealxyc/nunit.js",
+  "version": "0.2.1",
+  "_release": "0.2.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.2.1",
+    "commit": "2ed3c8609e5d4e482b8e0a12508b68681dec6b1e"
+  },
+  "_source": "https://github.com/nealxyc/nunit.js.git",
+  "_target": "~0.2.1",
+  "_originalSource": "nunit",
+  "_direct": true
+}

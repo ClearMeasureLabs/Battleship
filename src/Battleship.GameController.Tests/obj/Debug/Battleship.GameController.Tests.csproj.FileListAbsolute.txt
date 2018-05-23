@@ -1,0 +1,13 @@
+C:\working\spam-vsts\src\Battleship.GameController.Tests\bin\Debug\Battleship.GameController.Tests.dll
+C:\working\spam-vsts\src\Battleship.GameController.Tests\bin\Debug\Battleship.GameController.Tests.pdb
+C:\working\spam-vsts\src\Battleship.GameController.Tests\bin\Debug\Battleship.GameController.dll
+C:\working\spam-vsts\src\Battleship.GameController.Tests\bin\Debug\nunit.framework.dll
+C:\working\spam-vsts\src\Battleship.GameController.Tests\bin\Debug\Shouldly.dll
+C:\working\spam-vsts\src\Battleship.GameController.Tests\bin\Debug\Battleship.GameController.pdb
+C:\working\spam-vsts\src\Battleship.GameController.Tests\bin\Debug\nunit.framework.pdb
+C:\working\spam-vsts\src\Battleship.GameController.Tests\bin\Debug\nunit.framework.xml
+C:\working\spam-vsts\src\Battleship.GameController.Tests\obj\Debug\Battleship.GameController.Tests.csprojAssemblyReference.cache
+C:\working\spam-vsts\src\Battleship.GameController.Tests\obj\Debug\Battleship.GameController.Tests.csproj.CoreCompileInputs.cache
+C:\working\spam-vsts\src\Battleship.GameController.Tests\obj\Debug\Battleship.GameController.Tests.csproj.CopyComplete
+C:\working\spam-vsts\src\Battleship.GameController.Tests\obj\Debug\Battleship.GameController.Tests.dll
+C:\working\spam-vsts\src\Battleship.GameController.Tests\obj\Debug\Battleship.GameController.Tests.pdb

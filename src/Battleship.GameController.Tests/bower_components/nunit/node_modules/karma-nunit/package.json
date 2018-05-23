@@ -1,0 +1,12 @@
+{
+  "name": "karma-nunit",
+  "version": "0.0.1",
+  "description": "A Karma plugin - adapter for NUnit testing framework.",
+  "main": "lib/index.js",
+  "keywords": [
+    "karma",
+    "nunit"
+  ],
+  "author": "Neal Xiong",
+  "license": "MIT"
+}
