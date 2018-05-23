@@ -18,16 +18,15 @@ namespace Battleship.GameController.Contracts
             Coordinate = new Coordinate(column, row);
         }
 
-        public Position()
+        private Position()
         {
             Status = PositionStatus.None;
         }
 
-        public Position(string positionCode) : this()
+        public Position(Coordinate coordinate, Ship ship) : this()
         {
-            var column = (Letters)Enum.Parse(typeof(Letters), positionCode.ToUpper().Substring(0, 1));
-            var row = int.Parse(positionCode.Substring(1, 1));
-            Coordinate = new Coordinate(column, row);
+            Coordinate = coordinate;
+            ShipAtThisPosition = ship;
         }
 
         public override bool Equals(object obj)

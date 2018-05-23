@@ -38,15 +38,15 @@ namespace Battleship.GameController
             fleetList[4].Positions.Add(new Position(Letters.C, 6, patrolBoat));
         }
 
-        public Position ChooseMissileTarget()
+        public Coordinate ChooseMissileTarget()
         {
             var rows = 8;
             var lines = 8;
             var random = new Random();
             var letter = (Letters)random.Next(lines);
             var number = random.Next(rows);
-            var position = new Position(letter, number);
-            return position;
+            var coordinate = new Coordinate(letter, number);
+            return coordinate;
         }
     }
 }

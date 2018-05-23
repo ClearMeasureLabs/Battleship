@@ -8,7 +8,7 @@ namespace Battleship.GameController.Tests.GameControllerTests
     /// The game controller tests.
     /// </summary>
     [TestFixture]
-    public class GameControllerTests
+    public class BoardTests
     {
         /// <summary>
         /// The should hit the ship.
@@ -16,10 +16,10 @@ namespace Battleship.GameController.Tests.GameControllerTests
         [Test]
         public void ShouldHitTheShip()
         {
-            var ships = Ship.GetNewFleet();
+            var game = new Game();
 
             var counter = 0;
-            foreach (var ship in ships)
+            foreach (var ship in game.PlayerBoard.Fleet)
             {
                 var letter = (Letters)counter;
                 for (int i = 0; i < ship.Size; i++)
@@ -30,7 +30,7 @@ namespace Battleship.GameController.Tests.GameControllerTests
                 counter++;
             }
 
-            var result = new GameController(null).CheckIsHit(ships, new Position(Letters.A, 1), null);
+            var result = game.PlayerBoard.IsHit(new Coordinate(Letters.A, 1));
             Assert.IsTrue(result);
         }
 
@@ -40,10 +40,10 @@ namespace Battleship.GameController.Tests.GameControllerTests
         [Test]
         public void ShouldNotHitTheShip()
         {
-            var ships = Ship.GetNewFleet();
+            var game = new Game();
 
             var counter = 0;
-            foreach (var ship in ships)
+            foreach (var ship in game.PlayerBoard.Fleet)
             {
                 var letter = (Letters)counter;
                 for (int i = 0; i < ship.Size; i++)
@@ -54,7 +54,7 @@ namespace Battleship.GameController.Tests.GameControllerTests
                 counter++;
             }
 
-            var result = new GameController(null).CheckIsHit(ships, new Position(Letters.H, 1), null);
+            var result = game.PlayerBoard.IsHit(new Coordinate(Letters.H, 1));
             Assert.IsFalse(result);
         }
 

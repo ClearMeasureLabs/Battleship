@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Media;
 using Battleship.GameController.Contracts;
 
 namespace Battleship.GameController.Commands

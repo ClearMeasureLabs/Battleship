@@ -5,13 +5,22 @@ namespace Battleship.GameController.Contracts
 {
     public class Coordinate : IEquatable<Coordinate>
     {
+        public Letters Column { get; }
+        public int Row { get; }
+
+        public Coordinate(string positionCode)
+        {
+            var column = (Letters)Enum.Parse(typeof(Letters), positionCode.ToUpper().Substring(0, 1));
+            var row = int.Parse(positionCode.Substring(1, 1));
+            Column = column;
+            Row = row;
+        }
+
         public Coordinate(Letters column, int row)
         {
             Column = column;
             Row = row;
         }
-        public Letters Column { get; }
-        public int Row { get; }
 
         public override bool Equals(object obj)
         {

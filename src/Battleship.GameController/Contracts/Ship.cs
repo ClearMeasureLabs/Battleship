@@ -1,42 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Media;
+using Battleship.GameController.Events;
 
 namespace Battleship.GameController.Contracts
 {
     public class Ship
     {
-        private bool _isPlaced;
+        public string Name { get; set; }
+        public List<Position> Positions { get; set; }
+        public Color Color { get; set; }
+        public int Size { get; set; }
 
         public Ship()
         {
             Positions = new List<Position>();
         }
 
-        public string Name { get; set; }
-        public List<Position> Positions { get; set; }
-        public Color Color { get; set; }
-        public int Size { get; set; }
-
-        public bool IsPlaced
-        {
-            get => _isPlaced;
-            set
-            {
-                if (value.Equals(_isPlaced)) return;
-                _isPlaced = value;
-            }
-        }
-
         public void AddPosition(string positionCode)
         {
-            if (Positions == null) Positions = new List<Position>();
-
-            var position = new Position(positionCode)
-            {
-                ShipAtThisPosition = this,
-                Status = PositionStatus.None
-            };
-
+            var coordinate = new Coordinate(positionCode);
+            var position = new Position(coordinate, this);
             Positions.Add(position);
         }
 
@@ -57,5 +40,30 @@ namespace Battleship.GameController.Contracts
         public const string Submarine = "Submarine";
         public const string Destroyer = "Destroyer";
         public const string PatrolBoat = "Patrol Boat";
+
+        public bool IsAt(Coordinate coordinate)
+        {
+            foreach (var position in Positions)
+            {
+                if (position.Coordinate.Equals(coordinate))
+                {
+                    position.Status = PositionStatus.Hit;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool IsSunk()
+        {
+            foreach (var position in Positions)
+            {
+                if (position.Status != PositionStatus.Hit)
+                    return false;
+            }
+
+            return true;
+        }
     }
 }
