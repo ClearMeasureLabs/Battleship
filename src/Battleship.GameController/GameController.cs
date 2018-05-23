@@ -107,7 +107,7 @@ namespace Battleship.GameController
 
         private void ExecuteComputerTurn()
         {
-            var coordinate = _computerAiController.ChooseMissileTarget();
+            var coordinate = _computerAiController.ChooseRandomCoordinate(_game.PlayerBoard);
             bool isHit = _game.PlayerBoard.IsHit(coordinate);
 
             _bus.Send(new UserMessageCommand($"Computer shot in {coordinate.Column}{coordinate.Row}"));

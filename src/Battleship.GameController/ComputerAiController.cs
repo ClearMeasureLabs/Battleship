@@ -44,8 +44,13 @@ namespace Battleship.GameController
             fleetList[4].Positions.Add(new Position(Letters.C, 6, patrolBoat));
         }
 
-        private Coordinate[] GetShipCoordinatesForShipStartingAt(Coordinate startingCoordinate, Ship ship)
+        private Coordinate[] GetShipCoordinatesForShipStartingAt(
+            Coordinate startingCoordinate, Ship ship)
         {
+            for (int i = 0; i < ship.Size; i++)
+            {
+                
+            }
             //look at adjacent coordinates and see if ship.Size number of them
             //is unoccupied.
             //Pick random direction
@@ -56,15 +61,17 @@ namespace Battleship.GameController
 
         private Coordinate GetUntakenRandomCoordinate(Board board)
         {
-            //randomly select coordinate
-            //if already taken, get new coordinate
-            throw new NotImplementedException();
+            do
+            {
+                Coordinate randomCoordinate = ChooseRandomCoordinate(board);
+                if (!board.IsShipAt(randomCoordinate)) return randomCoordinate;
+            } while (true);
         }
 
-        public Coordinate ChooseMissileTarget()
+        public Coordinate ChooseRandomCoordinate(Board board)
         {
-            var rows = 8;
-            var lines = 8;
+            var rows = board.Size;
+            var lines = board.Size;
             var random = new Random();
             var letter = (Letters)random.Next(lines);
             var number = random.Next(rows);

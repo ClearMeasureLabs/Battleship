@@ -27,6 +27,11 @@ namespace Battleship.GameController.Contracts
             return ship;
         }
 
+        public bool IsShipAt(Coordinate coordinate)
+        {
+            return Fleet.Any(x => x.Positions.Any(y => y.Coordinate.Equals(coordinate)));
+        }
+
         public void PlaceShip(Ship ship, IEnumerable<Coordinate> shipCoordinates)
         {
             throw new System.NotImplementedException();
