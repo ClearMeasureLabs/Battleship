@@ -9,6 +9,12 @@ namespace Battleship.GameController
         public void InitializeFleet(Board board)
         {
             var fleetList = board.Fleet.ToList();
+            foreach (Ship ship in fleetList)
+            {
+                Coordinate startingCoordinate = GetUntakenRandomCoordinate(board);
+                Coordinate[] shipCoordinates = GetShipCoordinatesForShipStartingAt(startingCoordinate, ship);
+                board.PlaceShip(ship, shipCoordinates);
+            }
 
             Ship carrier = fleetList.Single(s=>s.Name.Equals(Ship.AircraftCarrier));
             fleetList[0].Positions.Add(new Position(Letters.B, 4, carrier));
@@ -36,6 +42,23 @@ namespace Battleship.GameController
             Ship patrolBoat = fleetList.Single(s => s.Name.Equals(Ship.Submarine));
             fleetList[4].Positions.Add(new Position(Letters.C, 5, patrolBoat));
             fleetList[4].Positions.Add(new Position(Letters.C, 6, patrolBoat));
+        }
+
+        private Coordinate[] GetShipCoordinatesForShipStartingAt(Coordinate startingCoordinate, Ship ship)
+        {
+            //look at adjacent coordinates and see if ship.Size number of them
+            //is unoccupied.
+            //Pick random direction
+            //If direction doesn't have space, try again
+            //return collection of coordinates in that direction - yield return
+            throw new NotImplementedException();
+        }
+
+        private Coordinate GetUntakenRandomCoordinate(Board board)
+        {
+            //randomly select coordinate
+            //if already taken, get new coordinate
+            throw new NotImplementedException();
         }
 
         public Coordinate ChooseMissileTarget()
