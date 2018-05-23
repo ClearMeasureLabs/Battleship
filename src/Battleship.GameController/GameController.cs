@@ -90,11 +90,15 @@ namespace Battleship.GameController
             bool isHit = _game.ComputerBoard.IsHit(coordinate);
             if (isHit)
             {
-                _bus.Send(new ShowHitCommand(_game.Configuration.GoodThing, "Yeah! Nice hit!"));
                 Ship ship = _game.ComputerBoard.ShipAt(coordinate);
                 if (ship.IsSunk())
                 {
+                    _bus.Send(new ShowSunkCommand(_game.Configuration.GoodThing, "Yeah! Nice hit!"));
                     _bus.SendEvent(new GameAnnouncementEvent($"You sank computer's {ship.Name}"));
+                }
+                else
+                {
+                    _bus.Send(new ShowHitCommand(_game.Configuration.GoodThing, "Yeah! Nice hit!"));
                 }
             }
             else
@@ -114,7 +118,16 @@ namespace Battleship.GameController
             _bus.Send(new UserMessageCommand(""));
             if (isHit)
             {
-                _bus.Send(new ShowHitCommand(_game.Configuration.BadThing, "Oh no! You've been hit!"));
+                Ship ship = _game.PlayerBoard.ShipAt(coordinate);
+                if (ship.IsSunk())
+                {
+                    _bus.Send(new ShowSunkCommand(_game.Configuration.BadThing, "Oh no! You've been hit!"));
+                    _bus.SendEvent(new GameAnnouncementEvent($"Your {ship.Name} has been sunk"));
+                }
+                else
+                {
+                    _bus.Send(new ShowHitCommand(_game.Configuration.BadThing, "Oh no! You've been hit!"));
+                }
             }
             else
             {

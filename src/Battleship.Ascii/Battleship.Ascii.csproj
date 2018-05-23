@@ -58,6 +58,7 @@
     <Compile Include="ShowCannonHandler.cs" />
     <Compile Include="ShowMissHandler.cs" />
     <Compile Include="ShowHitHandler.cs" />
+    <Compile Include="ShowSunkHandler.cs" />
     <Compile Include="StructureMapRegistry.cs" />
     <Compile Include="UserMessageHandler.cs" />
     <Compile Include="UserPromptHandler.cs" />
