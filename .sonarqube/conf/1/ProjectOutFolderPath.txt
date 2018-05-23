@@ -1,0 +1,1 @@
+C:\working\spam-vsts\.sonarqube\out\1

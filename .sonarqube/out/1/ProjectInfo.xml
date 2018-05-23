@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
+  <ProjectName>Battleship.Ascii</ProjectName>
+  <ProjectLanguage>C#</ProjectLanguage>
+  <ProjectType>Product</ProjectType>
+  <ProjectGuid>bbe9560a-42da-40ad-a345-bf808a86e074</ProjectGuid>
+  <FullPath>C:\working\spam-vsts\src\Battleship.Ascii\Battleship.Ascii.csproj</FullPath>
+  <IsExcluded>false</IsExcluded>
+  <AnalysisResults>
+    <AnalysisResult Id="FilesToAnalyze" Location="C:\working\spam-vsts\.sonarqube\out\1\FilesToAnalyze.txt" />
+  </AnalysisResults>
+  <AnalysisSettings>
+    <Property Name="sonar.cs.roslyn.reportFilePath">C:\working\spam-vsts\src\Battleship.Ascii\bin\Release\Battleship.Ascii.exe.RoslynCA.json</Property>
+    <Property Name="sonar.cs.analyzer.projectOutPath">C:\working\spam-vsts\.sonarqube\out\1</Property>
+  </AnalysisSettings>
+  <Configuration>Release</Configuration>
+  <Platform>AnyCPU</Platform>
+</ProjectInfo>

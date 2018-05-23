@@ -46,7 +46,9 @@ task Init {
 task Compile -depends Init {
     Write-Host("##[section]Starting: Build task 'Compile'")
     exec {
+        & tools\SonarQube.Scanner.MSBuild.exe begin /k:"BattleshipProject" /d:sonar.organization="jeffrey-clear-measure-com-micros" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="f893f6c7a0ce626ca81f5148d3487fed5bfa1eba"
         & 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\msbuild.exe' /t:Clean`;Rebuild /v:m /maxcpucount:1 /nologo /p:RunCodeAnalysis=true /p:ActiveRulesets=MinimumRecommendedRules.ruleset /p:Configuration=$projectConfig $source_dir\$projectName.sln
+        & tools\SonarQube.Scanner.MSBuild.exe end /d:sonar.login="f893f6c7a0ce626ca81f5148d3487fed5bfa1eba"
     }
 
     #

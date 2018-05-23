@@ -1,0 +1,13 @@
+F
+DC:\working\spam-vsts\src\Battleship.Ascii\GameAnnouncementHandler.cs6
+4C:\working\spam-vsts\src\Battleship.Ascii\Program.csF
+DC:\working\spam-vsts\src\Battleship.Ascii\Properties\AssemblyInfo.cs=
+;C:\working\spam-vsts\src\Battleship.Ascii\ShipHitHandler.cs@
+>C:\working\spam-vsts\src\Battleship.Ascii\ShowCannonHandler.cs>
+<C:\working\spam-vsts\src\Battleship.Ascii\ShowMissHandler.cs=
+;C:\working\spam-vsts\src\Battleship.Ascii\ShowHitHandler.cs>
+<C:\working\spam-vsts\src\Battleship.Ascii\ShowSunkHandler.csC
+AC:\working\spam-vsts\src\Battleship.Ascii\StructureMapRegistry.csA
+?C:\working\spam-vsts\src\Battleship.Ascii\UserMessageHandler.cs@
+>C:\working\spam-vsts\src\Battleship.Ascii\UserPromptHandler.csV
+RC:\Users\Owner\AppData\Local\Temp\.NETFramework,Version=v4.5.AssemblyAttributes.cs

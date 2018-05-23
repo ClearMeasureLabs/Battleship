@@ -1,0 +1,12 @@
+M
+DC:\working\spam-vsts\src\Battleship.Ascii\GameAnnouncementHandler.csutf-8=
+4C:\working\spam-vsts\src\Battleship.Ascii\Program.csutf-8M
+DC:\working\spam-vsts\src\Battleship.Ascii\Properties\AssemblyInfo.csutf-8D
+;C:\working\spam-vsts\src\Battleship.Ascii\ShipHitHandler.csutf-8G
+>C:\working\spam-vsts\src\Battleship.Ascii\ShowCannonHandler.csutf-8E
+<C:\working\spam-vsts\src\Battleship.Ascii\ShowMissHandler.csutf-8D
+;C:\working\spam-vsts\src\Battleship.Ascii\ShowHitHandler.csutf-8E
+<C:\working\spam-vsts\src\Battleship.Ascii\ShowSunkHandler.csutf-8J
+AC:\working\spam-vsts\src\Battleship.Ascii\StructureMapRegistry.csutf-8H
+?C:\working\spam-vsts\src\Battleship.Ascii\UserMessageHandler.csutf-8G
+>C:\working\spam-vsts\src\Battleship.Ascii\UserPromptHandler.csutf-8
