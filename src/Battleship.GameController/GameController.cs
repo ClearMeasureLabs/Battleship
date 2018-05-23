@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Mime;
 using System.Windows.Media;
@@ -14,6 +15,7 @@ namespace Battleship.GameController
         private Game _game;
         private readonly Bus _bus;
         private readonly ComputerAiController _computerAiController;
+        private List<Coordinate> _computersAttempts = new List<Coordinate>();
 
         public GameController(Bus bus)
         {
@@ -77,7 +79,7 @@ namespace Battleship.GameController
 
         private bool ExecutePlayerTurn()
         {
-            var input = _bus.Send(new UserPromptQuery("Enter coordinates for your shot (A1-H8), 'S' to Surrender:"));
+            var input = _bus.Send(new UserPromptQuery("Enter coordinates for your shot (A1-J10), 'S' to Surrender:"));
             switch (input?.ToUpper())
             {
                 case "S":
@@ -111,7 +113,20 @@ namespace Battleship.GameController
 
         private void ExecuteComputerTurn()
         {
-            var coordinate = _computerAiController.ChooseRandomCoordinate(_game.PlayerBoard);
+            Coordinate coordinate = null;
+            while (coordinate == null)
+            {
+                var theTry = _computerAiController.ChooseRandomCoordinate(_game.PlayerBoard);
+                if (!_computersAttempts.Contains(theTry))
+                    coordinate = theTry;
+
+                _computersAttempts.Add(theTry);
+                foreach (var computersAttempt in _computersAttempts)
+                {
+                    Debug.WriteLine(computersAttempt);
+                }
+            }
+                
             bool isHit = _game.PlayerBoard.IsHit(coordinate);
 
             _bus.Send(new UserMessageCommand($"Computer shot in {coordinate.Column}{coordinate.Row}"));
