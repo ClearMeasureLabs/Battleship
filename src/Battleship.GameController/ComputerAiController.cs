@@ -12,51 +12,33 @@ namespace Battleship.GameController
             foreach (Ship ship in fleetList)
             {
                 Coordinate startingCoordinate = GetUntakenRandomCoordinate(board);
-                Coordinate[] shipCoordinates = GetShipCoordinatesForShipStartingAt(startingCoordinate, ship);
-                board.PlaceShip(ship, shipCoordinates);
+                PlaceShipCoordinatesForShipStartingAt(startingCoordinate, ship);
             }
 
-            Ship carrier = fleetList.Single(s=>s.Name.Equals(Ship.AircraftCarrier));
-            fleetList[0].Positions.Add(new Position(Letters.B, 4, carrier));
-            fleetList[0].Positions.Add(new Position(Letters.B, 5, carrier));
-            fleetList[0].Positions.Add(new Position(Letters.B, 6, carrier));
-            fleetList[0].Positions.Add(new Position(Letters.B, 7, carrier));
-            fleetList[0].Positions.Add(new Position(Letters.B, 8, carrier));
-
-            Ship battleship = fleetList.Single(s => s.Name.Equals(Ship.Battleship));
-            fleetList[1].Positions.Add(new Position(Letters.E, 6, battleship));
-            fleetList[1].Positions.Add(new Position(Letters.E, 7, battleship));
-            fleetList[1].Positions.Add(new Position(Letters.E, 8, battleship));
-            fleetList[1].Positions.Add(new Position(Letters.E, 9, battleship));
-
-            Ship destroyer = fleetList.Single(s => s.Name.Equals(Ship.Destroyer));
-            fleetList[2].Positions.Add(new Position(Letters.A, 3, destroyer));
-            fleetList[2].Positions.Add(new Position(Letters.B, 3, destroyer));
-            fleetList[2].Positions.Add(new Position(Letters.C, 3, destroyer));
-
-            Ship submarine = fleetList.Single(s => s.Name.Equals(Ship.Submarine));
-            fleetList[3].Positions.Add(new Position(Letters.F, 8, submarine));
-            fleetList[3].Positions.Add(new Position(Letters.G, 8, submarine));
-            fleetList[3].Positions.Add(new Position(Letters.H, 8, submarine));
-
-            Ship patrolBoat = fleetList.Single(s => s.Name.Equals(Ship.Submarine));
-            fleetList[4].Positions.Add(new Position(Letters.C, 5, patrolBoat));
-            fleetList[4].Positions.Add(new Position(Letters.C, 6, patrolBoat));
+            foreach (Ship ship in board.Fleet)
+            {
+                Console.WriteLine(ship.Name);
+                foreach (Position position in ship.Positions)
+                {
+                    Console.WriteLine(position.Coordinate.Column + " " + position.Coordinate.Row);
+                }
+            }
         }
 
-        private Coordinate[] GetShipCoordinatesForShipStartingAt(
-            Coordinate startingCoordinate, Ship ship)
+        private void PlaceShipCoordinatesForShipStartingAt(Coordinate startingCoordinate,
+            Ship ship)
         {
+
             for (int i = 0; i < ship.Size; i++)
             {
-                
+                ship.Positions.Add(new Position(
+                    startingCoordinate.Column, startingCoordinate.Row + i, ship));
             }
             //look at adjacent coordinates and see if ship.Size number of them
             //is unoccupied.
             //Pick random direction
             //If direction doesn't have space, try again
             //return collection of coordinates in that direction - yield return
-            throw new NotImplementedException();
         }
 
         private Coordinate GetUntakenRandomCoordinate(Board board)
