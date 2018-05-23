@@ -8,7 +8,7 @@ namespace Battleship.Ascii
         private static Container iocContainer;
         private static Bus _bus;
 
-        private static void Main()
+        public static void Main()
         {
             iocContainer = new Container(new StructureMapRegistry());
             _bus = iocContainer.GetInstance<Bus>();

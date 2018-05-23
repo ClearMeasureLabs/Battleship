@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Windows.Media;
 using Battleship.GameController.Commands;
 using Battleship.GameController.Contracts;
