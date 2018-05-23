@@ -14,7 +14,7 @@ namespace Battleship.GameController
         private Game _game;
         private readonly Bus _bus;
         private readonly ComputerAiController _computerAiController;
-
+        private Coordinate _computerToFireAt;
         public GameController(Bus bus)
         {
             _bus = bus;
@@ -78,12 +78,18 @@ namespace Battleship.GameController
         private bool ExecutePlayerTurn()
         {
             var input = _bus.Send(new UserPromptQuery("Enter coordinates for your shot (A1-H8), 'S' to Surrender:"));
-            switch (input?.ToUpper())
+            if (input.Length == 1)
             {
-                case "S":
-                    return true;
-                default:
-                    break;
+                switch (input?.ToUpper())
+                {
+                    case "S":
+                        return true;
+                    case "D":
+                        _computerToFireAt = _computerToFireAt != null ? new Coordinate(Letters.A, _computerToFireAt.Row+1) : new Coordinate(Letters.A, 1);
+                        return false;
+                    default:
+                        break;
+                }
             }
 
             var coordinate = new Coordinate(input);
@@ -111,7 +117,15 @@ namespace Battleship.GameController
 
         private void ExecuteComputerTurn()
         {
-            var coordinate = _computerAiController.ChooseRandomCoordinate(_game.PlayerBoard);
+            Coordinate coordinate;
+            if (_computerToFireAt == null)
+            {
+                coordinate = _computerAiController.ChooseRandomCoordinate(_game.PlayerBoard);
+            }
+            else
+            {
+                coordinate = _computerToFireAt;
+            }
             bool isHit = _game.PlayerBoard.IsHit(coordinate);
 
             _bus.Send(new UserMessageCommand($"Computer shot in {coordinate.Column}{coordinate.Row}"));

@@ -23,7 +23,7 @@ namespace Battleship.GameController.Contracts
 
         public Ship ShipAt(Coordinate coordinate)
         {
-            Ship ship = Fleet.Single(x => x.Positions.Any(y => y.Coordinate.Equals(coordinate)));
+            Ship ship = Fleet.FirstOrDefault(x => x.Positions.Any(y => y.Coordinate.Equals(coordinate)));
             return ship;
         }
 
