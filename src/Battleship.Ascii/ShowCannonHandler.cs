@@ -10,17 +10,24 @@ namespace Battleship.Ascii
         public EventAck Handle(ShowCannonCommand request)
         {
             Console.Clear();
-            Console.WriteLine("                  __");
-            Console.WriteLine(@"                 /  \");
-            Console.WriteLine("           .-.  |    |");
-            Console.WriteLine(@"   *    _.-'  \  \__/");
-            Console.WriteLine(@"    \.-'       \");
-            Console.WriteLine("   /          _/");
-            Console.WriteLine(@"  |      _  /""");
-            Console.WriteLine(@"  |     /_\'");
-            Console.WriteLine(@"   \    \_/");
-            Console.WriteLine(@"    """"""""");
-            return EventAck.Ok; 
+            Console.WriteLine(@"\-------\                                  ");
+            Console.WriteLine(@" \       \                             \   ");
+            Console.WriteLine(@"  \_______\_____________________________\  ");
+            Console.WriteLine("  3______________________________________> ");
+            Console.WriteLine("  /       /                             /  ");
+            Console.WriteLine(" /       /                             /   ");
+            Console.WriteLine("/-------/                                  ");
+            //Console.WriteLine("                  __");
+            //Console.WriteLine(@"                 /  \");
+            //Console.WriteLine("           .-.  |    |");
+            //Console.WriteLine(@"   *    _.-'  \  \__/");
+            //Console.WriteLine(@"    \.-'       \");
+            //Console.WriteLine("   /          _/");
+            //Console.WriteLine(@"  |      _  /""");
+            //Console.WriteLine(@"  |     /_\'");
+            //Console.WriteLine(@"   \    \_/");
+            //Console.WriteLine(@"    """"""""");
+            return EventAck.Ok;
         }
     }
 }
