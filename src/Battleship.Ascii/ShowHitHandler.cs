@@ -12,14 +12,9 @@ namespace Battleship.Ascii
             Console.Beep();
             var origColor = Console.ForegroundColor;
             Console.ForegroundColor = request.Color;
-            Console.WriteLine(@"                \         .  ./");
-            Console.WriteLine(@"              \      .:"";'.:..""   /");
-            Console.WriteLine(@"                  (M^^.^~~:.'"").");
-            Console.WriteLine(@"            -   (/  .    . . \ \)  -");
-            Console.WriteLine(@"               ((| :. ~ ^  :. .|))");
-            Console.WriteLine(@"            -   (\- |  \ /  |  /)  -");
-            Console.WriteLine(@"                 -\  \     /  /-");
-            Console.WriteLine(@"                   \  \   /  /");
+            Console.WriteLine(@"'. \ | / ,'   ");
+            Console.WriteLine(@"..' ,'        ");
+            Console.WriteLine(@"( .`.|,' .)   ");
             Console.WriteLine(request.Message);
             Console.ForegroundColor = origColor;
 

@@ -17,16 +17,6 @@ namespace Battleship.Ascii
             Console.WriteLine("  /       /                             /  ");
             Console.WriteLine(" /       /                             /   ");
             Console.WriteLine("/-------/                                  ");
-            //Console.WriteLine("                  __");
-            //Console.WriteLine(@"                 /  \");
-            //Console.WriteLine("           .-.  |    |");
-            //Console.WriteLine(@"   *    _.-'  \  \__/");
-            //Console.WriteLine(@"    \.-'       \");
-            //Console.WriteLine("   /          _/");
-            //Console.WriteLine(@"  |      _  /""");
-            //Console.WriteLine(@"  |     /_\'");
-            //Console.WriteLine(@"   \    \_/");
-            //Console.WriteLine(@"    """"""""");
             return EventAck.Ok;
         }
     }
